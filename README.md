@@ -3,6 +3,6 @@ Simulation of UPM robot
 
 Launch the simulation:
 ```
-ros2 launch sim robominer.launch.py 
+ros2 launch rm2_simulation robominer.launch.py 
 ```
 
