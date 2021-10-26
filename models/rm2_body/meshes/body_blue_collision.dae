@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.93.1 commit date:2021-06-22, commit time:05:57, hash:1b8d33b18c2f</authoring_tool>
     </contributor>
-    <created>2021-10-26T10:06:49</created>
-    <modified>2021-10-26T10:06:49</modified>
+    <created>2021-10-26T17:13:11</created>
+    <modified>2021-10-26T17:13:11</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -85,11 +85,11 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="RM2_Structure_collision_v3" name="RM2_Structure_collision v3" type="NODE">
-        <matrix sid="transform">0.001 0 0 0 0 -1.62921e-10 -0.001 0 0 0.001 -1.62921e-10 0 0 0 0 1</matrix>
+        <matrix sid="transform">0.001 0 0 0 0 5e-4 -8.66026e-4 0 0 8.66026e-4 5e-4 0 0 0 0 1</matrix>
         <node id="RM2_Structure_Collision_1" name="RM2_Structure_Collision:1" type="NODE">
-          <matrix sid="transform">1 0 0 0 0 1 -1.42109e-14 0 0 1.42109e-14 1 0 0 0 0 1</matrix>
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
           <node id="RM2_Structure_Collision" name="RM2_Structure_Collision" type="NODE">
-            <matrix sid="transform">1 0 0 0 0 1 -1.42109e-14 0 0 1.42109e-14 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
             <node id="Body1" name="Body1" type="NODE">
               <matrix sid="transform">10 0 0 0 0 10 0 0 0 0 10 0 0 0 0 1</matrix>
               <instance_geometry url="#Body1-mesh" name="Body1">
