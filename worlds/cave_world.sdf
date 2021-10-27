@@ -58,18 +58,21 @@
         <pose>0 0 0 0 0 0</pose>
         <uri>model://rm2_body</uri>
       </include>
+
        <!-- INCLUDE LEG 1-->
       <include>
-        <pose>-0.004511 0.000021 0.086269 0 0 0</pose>
+        <pose relative_to="leg_body_joint">-0.004511 0.000021 0.086269 0 0 0</pose>
         <uri>model://rm2_leg</uri>
         <name>rm2_leg_1</name>
       </include>
       <!-- JOINT BODY - LEG: error not nested files-->
      <joint name="leg_body_joint" type="revolute">
-
+      <pose relative_to="rm2_body::baseLink">
+        0 0 0  0 0 0
+        </pose>
       <!--POSE JOINT></POSE>-->
-        <parent>rm2_body::base</parent>
-        <child>rm2_leg_1::leg_motors_structure</child>
+        <parent>rm2_body::baseLink</parent>
+        <child>rm2_leg_1::leg_motors_structureLink</child>
         <axis>
           <xyz>1 0 0</xyz>
         </axis>

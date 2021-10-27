@@ -4,7 +4,7 @@
     <static>false</static>
     <self_collide>true</self_collide>
 
-    <link name='base'>
+    <link name='baseLink'>
       <kinematic>0</kinematic>
       <pose>0 0 0 0 0 0</pose>
       <inertial>
@@ -21,21 +21,30 @@
       <collision name='collision'>
         <geometry>
           <mesh>
-            <uri>model://rm2_body/meshes/body_blue_collision.dae</uri>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_body/meshes/body_collision.stl</uri>
           </mesh>
         </geometry>
         <max_contacts>10</max_contacts>
       </collision>
       <visual name='visual'>
+        <transparency>0.3</transparency>
         <geometry>
           <mesh>
-            <uri>model://rm2_body/meshes/body_blue_simple.dae</uri>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_body/meshes/body_structure_blue.stl</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+          <specular>0 0 0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
       </visual>
       <self_collide>0</self_collide>
       <enable_wind>0</enable_wind>
     </link>
-    <!-- JOINTS -->
+    <!-- JOINTS IN WORLD -->
   </model>
 </sdf>

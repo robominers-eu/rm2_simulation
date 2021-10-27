@@ -5,7 +5,7 @@
     <self_collide>true</self_collide>
 
 
-    <link name='leg_motors_structure'>
+    <link name='leg_motors_structureLink'>
       <pose>0 0 0 0 0 0</pose>
       <inertial>
         <mass>5</mass>
@@ -19,21 +19,26 @@
                 </inertia> -->
       </inertial>
       <collision name='collision'>
-        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.166 0.040 0.047</size>
+            <size>1.166 1.040 1.047</size>
           </box>
         </geometry>
-        <max_contacts>10</max_contacts>
       </collision>
       <visual name='visual'>
-        <pose>0 0 0 0 0 0</pose>
+        <transparency>0.3</transparency>
         <geometry>
           <mesh>
-            <uri>model://rm2_leg/meshes/leg_motors_visuals.dae</uri>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_leg/meshes/leg_motors_simple.stl</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>0 0 0 0.7</diffuse>
+          <ambient>0 0 0 0.7</ambient>
+          <specular>0 0 0 0.7</specular>
+          <emissive>0 0 0 0.7</emissive>
+        </material>
       </visual>
       <self_collide>0</self_collide>
       <enable_wind>0</enable_wind>
