@@ -20,7 +20,7 @@
 
 
     <!-- FLOOR -->
-    <!--  <model name="ground_plane">
+    <model name="ground_plane">
       <static>true</static>
       <pose>0 0 -0.115015 0 0 0</pose>
       <link name="link">
@@ -44,20 +44,8 @@
             <specular>0.8 0.8 0.8 1</specular>
           </material>
         </visual>
-
       </link>
-      
-    </model>-->
-
-
-    <model name="cave">
-      <include>
-        <pose>5.35 5.35 0 0 0 0</pose>
-        <uri>model://cave</uri>
-        <name>cave</name>
-      </include>
     </model>
-
 
     <!-- SUN -->
     <light type="directional" name="sun">
@@ -77,7 +65,7 @@
     <!-- INCLUDE BODY Y PATAS -->
     <model name="mod1">
       <include>
-        <pose>0 0 0.45 0 0 0</pose> <!-- Z for mine-->
+        <pose>0 0 0 0 0 0</pose>
         <uri>model://rm2_body</uri>
         <name>b</name>
       </include>
@@ -136,7 +124,6 @@
         <joint_name>j_b_l2</joint_name>
         <topic>pos_j_l2</topic>
       </plugin>
-
       <!-- INCLUDE LEG 3 -->
       <include>
         <pose relative_to="j_b_l3">-0.085512 0 0.011284 0 0 0</pose>
@@ -163,7 +150,6 @@
         <joint_name>j_b_l3</joint_name>
         <topic>pos_j_l3</topic>
       </plugin>
-
     </model>
   </world>
 </sdf>

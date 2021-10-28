@@ -30,10 +30,10 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>0 0 0 0.7</diffuse>
-          <ambient>0 0 0 0.7</ambient>
-          <specular>0 0 0 0.7</specular>
-          <emissive>0 0 0 0.7</emissive>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
         </material>
       </visual>
     </link>
