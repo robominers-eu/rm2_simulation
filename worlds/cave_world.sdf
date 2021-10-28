@@ -1,14 +1,30 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <world name="cave_world">
+    <!--  <gravity>0 0 -9.8</gravity>
+    <static>false</static>
+    <physics name="1ms" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>-->
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
-    </physics>
+    </physics> 
+
     <plugin filename="libignition-gazebo-physics-system.so" name="ignition::gazebo::systems::Physics"></plugin>
     <plugin filename="libignition-gazebo-user-commands-system.so" name="ignition::gazebo::systems::UserCommands"></plugin>
     <plugin filename="libignition-gazebo-scene-broadcaster-system.so" name="ignition::gazebo::systems::SceneBroadcaster"></plugin>
 
+    <!-- 
+    <model name="cave">
+      <include>
+        <pose>0 0 0 0 0 0</pose>
+        <uri>model://cave</uri>
+        <name>cave</name>
+      </include>
+      </model>
+-->
     <!-- FLOOR -->
     <model name="ground_plane">
       <static>true</static>
@@ -37,6 +53,7 @@
       </link>
     </model>
 
+    <!-- SUN -->
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
@@ -51,42 +68,52 @@
       <direction>-0.5 0.1 -0.9</direction>
     </light>
 
-
-    <!-- INCLUDE BODY-->
-    <model name="rm2_body">
+    <!-- INCLUDE BODY Y PATAS
+    -->
+    <model name="mod1">
       <include>
         <pose>0 0 0 0 0 0</pose>
         <uri>model://rm2_body</uri>
+        <name>b</name>
       </include>
 
-       <!-- INCLUDE LEG 1-->
+      <!-- INCLUDE LEG 1-->
       <include>
-        <pose relative_to="leg_body_joint">-0.004511 0.000021 0.086269 0 0 0</pose>
+        <pose relative_to="j_b_l1">-0.085512 0 0.011284 0 0 0</pose>
         <uri>model://rm2_leg</uri>
-        <name>rm2_leg_1</name>
+        <name>l1</name>
       </include>
-      <!-- JOINT BODY - LEG: error not nested files-->
-     <joint name="leg_body_joint" type="revolute">
-      <pose relative_to="rm2_body::baseLink">
-        0 0 0  0 0 0
-        </pose>
-      <!--POSE JOINT></POSE>-->
-        <parent>rm2_body::baseLink</parent>
-        <child>rm2_leg_1::leg_motors_structureLink</child>
+
+      <!-- JOINT BODY - LEG 1 FRONT-->
+      <joint name="j_b_l1" type="revolute">
+        <pose relative_to="b::bodyLink">0.081 0 0.074985 0 0 0</pose> <!-- CORREGIR POSES-->
+        <parent>b::bodyLink</parent>
+        <child>l1::legLink</child>
         <axis>
-          <xyz>1 0 0</xyz>
+          <xyz>-1 0 0</xyz>
+          <limit>
+            <lower>-1.041</lower>
+            <upper>1.041</upper>
+          </limit>
         </axis>
       </joint>
-    </model>
-    <!-- 
-    <model name="cave">
-      <include>
-        <pose>0 0 0 0 0 0</pose>
-        <uri>model://cave</uri>
-        <name>cave</name>
-      </include>
-      </model>
--->
+      <!-- 
+         
+            <joint name="leg_1_body_joint_B" type="revolute">
+              <pose relative_to="rm2_base::baseLink">-0.081 -0.000005 -0.074985 0 0 0</pose>
+              <parent>rm2_base::baseLink</parent>
+              <child>rm2_leg_1::leg_motors_structureLink</child>
+              <axis>
+                <xyz>-1 0 0</xyz>
+              </axis>
+            </joint>   -->
 
+
+      <plugin filename="ignition-gazebo-joint-position-controller-system" name="ignition::gazebo::systems::JointPositionController">
+        <joint_name>j_b_l1</joint_name>
+        <topic>pos_j_l1</topic>
+      </plugin>
+
+    </model>
   </world>
 </sdf>

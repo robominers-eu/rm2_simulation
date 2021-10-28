@@ -1,22 +1,18 @@
 <?xml version="1.0"?>
-<sdf version="1.6">
-  <model name="rm2_body">
-    <static>false</static>
-    <self_collide>true</self_collide>
-
-    <link name='baseLink'>
-      <kinematic>0</kinematic>
+<sdf version="1.7">
+  <model name="b">
+    <link name='bodyLink'>
       <pose>0 0 0 0 0 0</pose>
       <inertial>
-        <mass>5</mass>
-        <!-- <inertia>
-                    <ixx>28.963e-06</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>23.678e-06</iyy>
-                    <iyz>-0.388e-06</iyz>
-                    <izz>16.399e-06</izz>
-                </inertia> -->
+        <mass>1.8</mass>
+        <inertia>
+          <ixx>2.501</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.501</iyy>
+          <iyz>0</iyz>
+          <izz>5</izz>
+        </inertia>
       </inertial>
       <collision name='collision'>
         <geometry>
@@ -25,7 +21,6 @@
             <uri>model://rm2_body/meshes/body_collision.stl</uri>
           </mesh>
         </geometry>
-        <max_contacts>10</max_contacts>
       </collision>
       <visual name='visual'>
         <transparency>0.3</transparency>
@@ -42,9 +37,6 @@
           <emissive>0 0 0 1</emissive>
         </material>
       </visual>
-      <self_collide>0</self_collide>
-      <enable_wind>0</enable_wind>
     </link>
-    <!-- JOINTS IN WORLD -->
   </model>
 </sdf>
