@@ -1,11 +1,23 @@
 # rm2_simulation
 Simulation of UPM robot
 
-Launch the simulation:
+Launch the simulation (default mine world):
 ```
-ros2 launch rm2_simulation robominer.launch.py 
+ros2 launch rm2_simulation robominer.launch.py
 ```
-Send positions to leg 1, angle in radians:
+
+Launch the simulation in empty world (cloning this repository in workspace/src and from workspace/):
 ```
-ign topic -t "/pos_j_l1" -m ignition.msgs.Double -p "data: ANGLE"
+ros2 launch rm2_simulation robominer.launch.py ign_args:="src/rm2_simulation/worlds/ground_world.sdf"
+
 ```
+
+Send positions to leg N (N 1, 2 o 3), angle in radians:
+```
+ign topic -t "/pos_j_lN" -m ignition.msgs.Double -p "data: ANGLE"
+```
+E.g.:
+```
+ign topic -t "/pos_j_l1" -m ignition.msgs.Double -p "data: 0.5"
+```
+
