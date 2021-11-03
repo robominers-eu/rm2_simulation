@@ -21,7 +21,7 @@ def generate_launch_description():
             
   return LaunchDescription([
      DeclareLaunchArgument('ign_args',
-     default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf') +' --gui-config ' +
+     default_value=[os.path.join(pkg, 'worlds', 'ground_world.sdf') +' --gui-config ' +
       os.path.join(pkg, 'ign', 'gui.config'), ''], description='Ignition Gazebo arguments'),
         ign_gazebo
         #  spawn,

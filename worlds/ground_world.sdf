@@ -150,6 +150,13 @@
         <joint_name>j_b_l3</joint_name>
         <topic>pos_j_l3</topic>
       </plugin>
+
+            <!-- NO VA TODAVIA -->
+            <plugin filename="ignition-gazebo-joint-position-controller-system" name="ignition::gazebo::systems::JointPositionController">
+              <joint_name>l1:j_l_fm1</joint_name>
+              <topic>pos_j_l1_fm1</topic>
+            </plugin>
+      
     </model>
   </world>
 </sdf>
