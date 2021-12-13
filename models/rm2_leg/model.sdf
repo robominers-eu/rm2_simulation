@@ -341,7 +341,7 @@
     </joint>
 
     <!-- TERMINAR-->
-     <!-- INCLUDE ACTUATOR -->
+     <!-- INCLUDE ACTUATOR 
      <link name="aLink">
       <pose relative_to="j_a_fa1">0.009816 -0.0015 0.028349 0 0</pose>
       <inertial>
@@ -378,9 +378,9 @@
           <emissive>0 0 0.5 0.1</emissive>
         </material>
       </visual>
-    </link>
+    </link>-->
 
-    <!-- JOINT ACTUATOR - FRAME ACTUATOR 1 -->
+    <!-- JOINT ACTUATOR - FRAME ACTUATOR 1
     <joint name="j_a_fa1" type="fixed">
       <pose relative_to=""> -0.028265 -0.000851 -0.023717 0 0 0 </pose>
       <parent>fm3Link</parent>
@@ -388,7 +388,7 @@
       <axis>
         <xyz>0 1 0</xyz>
       </axis>
-    </joint>
+    </joint> -->
 
   </model>
 </sdf>
