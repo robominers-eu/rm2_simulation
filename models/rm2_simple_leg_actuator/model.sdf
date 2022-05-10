@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="leg">
+  
+    <!-- INCLUDE MOTORS-->
+    <link name='motorsLink'>
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.6</mass>
+        <inertia>
+          <ixx>0.032</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.032</iyy>
+          <iyz>0</iyz>
+          <izz>0.00012</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>0.166 0.038 0.0465</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <transparency>0</transparency>
+        <pose relative_to='motorsLink'>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg_actuator/meshes/leg_motor.stl</uri>
+          </mesh>
+		      <!--<box>
+		        <size>0.166 0.038 0.0465</size>
+		      </box>-->
+        </geometry>
+          <material>
+            <ambient>0.0 0.0 0 1</ambient>
+            <diffuse>0.0 0.0 0 1</diffuse>
+            <specular>0.0 0.0 0 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+
+    <!-- JOINT WORLD - MOTORS -->
+    <!--<joint name="j_w_m" type="revolute">
+      <pose relative_to="motorsLink">0 0 -0.025 0 0 0 </pose>
+      <parent>world</parent>
+      <child>motorsLink</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+      </axis>
+    </joint>-->
+    
+    <!-- INCLUDE FRAMES -->
+    <link name='framesLink'>
+      <pose relative_to="j_m_f">0 0 0.03825 0 0 0</pose>
+      <inertial>
+        <mass>0.6</mass>
+        <inertia>
+          <ixx>0.192</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.192</iyy>
+          <iyz>0</iyz>
+          <izz>0.00072</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <pose relative_to="motorsLink">0 0 0 0 0 0</pose>
+        <transparency>0.1</transparency>
+        <geometry>
+          <mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg_actuator/meshes/leg_frames_corregido2.stl</uri>
+          </mesh>
+          <!--<cylinder>
+            <radius>0.005</radius>
+            <length>0.1</length>
+          </cylinder>-->
+        </geometry>
+          <material>
+            <ambient>0.0 0.0 0 1</ambient>
+            <diffuse>0.0 0.0 0 1</diffuse>
+            <specular>0.0 0.0 0 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+
+    <!-- JOINT MOTORS - FRAMES -->
+    <joint name="j_m_f" type="revolute">
+      <pose relative_to="motorsLink">0 0 0.02325 0 0 0 </pose>
+      <parent>motorsLink</parent>
+      <child>framesLink</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.785398</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <!-- INCLUDE ACTUATOR BASE -->
+    <link name="actuatorBaseLink">
+      <pose relative_to="j_f_ab">0 0 0.0106 0 -1.5708 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.064</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.064</iyy>
+          <iyz>0</iyz>
+          <izz>0.00024</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg_actuator/meshes/leg_motor.stl</uri>
+          </mesh>-->
+          <cylinder>
+            <radius>0.020</radius>
+            <length>0.050</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <transparency>0.1</transparency>
+        <geometry>
+          <cylinder>
+            <radius>0.020</radius>
+            <length>0.050</length>
+          </cylinder>
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_leg/meshes/fm1_real.stl</uri>
+          </mesh>-->
+        </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+    
+    <!-- JOINT FRAMES - ACTUATOR BASE -->
+    <joint name="j_f_ab" type="revolute">
+      <pose relative_to="framesLink">0 0 0.03825 0 0 0 </pose>
+      <parent>framesLink</parent>
+      <child>actuatorBaseLink</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.785398</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <!-- INCLUDE FORWARD ACTUATOR -->
+    <link name="forwardActuatorLink">
+      <pose relative_to="j_ab_fa">0 0 -0.0415 0 0 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.064</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.064</iyy>
+          <iyz>0</iyz>
+          <izz>0.00024</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg_actuator/meshes/leg_motor.stl</uri>
+          </mesh>-->
+          <cylinder>
+            <radius>0.022</radius>
+            <length>0.083</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <transparency>0.1</transparency>
+        <geometry>
+          <cylinder>
+            <radius>0.022</radius>
+            <length>0.083</length>
+          </cylinder>
+          <!--<box>
+            <size>0.022 0.022 0.083</size>
+          </box>-->
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_leg/meshes/fm1_real.stl</uri>
+          </mesh>-->
+        </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+    
+    <!-- JOINT ACTUATOR BASE - FORWARD ACTUATOR -->
+    <joint name="j_ab_fa" type="revolute">
+      <pose relative_to="actuatorBaseLink">0 0 -0.025 0 0 0 </pose>
+      <parent>actuatorBaseLink</parent>
+      <child>forwardActuatorLink</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>    
+
+    <!-- INCLUDE BACKWARD ACTUATOR -->
+    <link name="backwardActuatorLink">
+      <pose relative_to="j_ab_ba">0 0 0.0415 0 0 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.064</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.064</iyy>
+          <iyz>0</iyz>
+          <izz>0.00024</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg_actuator/meshes/leg_motor.stl</uri>
+          </mesh>-->
+          <cylinder>
+            <radius>0.022</radius>
+            <length>0.083</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <transparency>0.1</transparency>
+        <geometry>
+          <cylinder>
+            <radius>0.022</radius>
+            <length>0.083</length>
+          </cylinder>
+          <!--<box>
+            <size>0.022 0.022 0.083</size>
+          </box>-->
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_leg/meshes/fm1_real.stl</uri>
+          </mesh>-->
+        </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+    
+    <!-- JOINT ACTUATOR BASE - BACKWARD ACTUATOR -->
+    <joint name="j_ab_ba" type="revolute">
+      <pose relative_to="actuatorBaseLink">0 0 0.025 0 0 0 </pose>
+      <parent>actuatorBaseLink</parent>
+      <child>backwardActuatorLink</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>  
+    
+    <!--ign topic -t "/j_w_m_cmd" -m ignition.msgs.Double -p "data: 0.0"-->
+    <!--<plugin
+      filename="ignition-gazebo-joint-position-controller-system"
+      name="ignition::gazebo::systems::JointPositionController">
+      <joint_name>j_w_m</joint_name>
+      <topic>j_w_m_cmd</topic>
+      <p_gain>0.2</p_gain>
+      <i_gain>0.0</i_gain>
+      <d_gain>0.2</d_gain>
+      <i_max>1</i_max>
+      <i_min>-1</i_min>
+      <cmd_max>1000</cmd_max>
+      <cmd_min>-1000</cmd_min>
+    </plugin>-->
+    
+    <!--ign topic -t "/j_m_f_cmd" -m ignition.msgs.Double -p "data: 0.0"-->
+    <!--<plugin
+      filename="ignition-gazebo-joint-position-controller-system"
+      name="ignition::gazebo::systems::JointPositionController">
+      <joint_name>j_m_f</joint_name>
+      <topic>j_m_f_cmd</topic>
+      <p_gain>0.2</p_gain>
+      <i_gain>0.0</i_gain>
+      <d_gain>0.2</d_gain>
+      <i_max>1</i_max>
+      <i_min>-1</i_min>
+      <cmd_max>1000</cmd_max>
+      <cmd_min>-1000</cmd_min>
+    </plugin>-->
+    
+    <!--ign topic -t "/j_f_a_cmd" -m ignition.msgs.Double -p "data: 0.0"-->
+    <!--<plugin
+      filename="ignition-gazebo-joint-position-controller-system"
+      name="ignition::gazebo::systems::JointPositionController">
+      <joint_name>j_f_a</joint_name>
+      <topic>j_f_a_cmd</topic>
+      <p_gain>0.2</p_gain>
+      <i_gain>0.0</i_gain>
+      <d_gain>0.2</d_gain>
+      <i_max>1</i_max>
+      <i_min>-1</i_min>
+      <cmd_max>1000</cmd_max>
+      <cmd_min>-1000</cmd_min>
+    </plugin>-->
+      
+    <!-- NO VA TODAVIA
+            <plugin filename="ignition-gazebo-joint-position-controller-system" name="ignition::gazebo::systems::JointPositionController">
+              <joint_name>l1:j_l_fm1</joint_name>
+              <topic>pos_j_l1_fm1</topic>
+            </plugin> -->
+    
+    <!-- TERMINAR-->
+     <!-- INCLUDE ACTUATOR 
+     <link name="aLink">
+      <pose relative_to="j_a_fa1">0.009816 -0.0015 0.028349 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.032</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.032</iyy>
+          <iyz>0</iyz>
+          <izz>0.00012</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_leg/meshes/fa3_collision.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <transparency>0.15</transparency>
+        <geometry>
+          <mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_leg/meshes/fa3_real.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>
+      </visual>
+    </link>-->
+
+    <!-- JOINT ACTUATOR - FRAME ACTUATOR 1
+    <joint name="j_a_fa1" type="fixed">
+      <pose relative_to=""> -0.028265 -0.000851 -0.023717 0 0 0 </pose>
+      <parent>fm3Link</parent>
+      <child>fa3Link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint> -->
+
+  </model>
+</sdf>
