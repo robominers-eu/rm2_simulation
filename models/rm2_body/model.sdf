@@ -23,7 +23,7 @@
         </geometry>
       </collision>
       <visual name='visual'>
-        <transparency>0.2</transparency>
+        <transparency>0.3</transparency>
         <geometry>
           <mesh>
             <scale> 0.001 0.001 0.001</scale>
@@ -31,9 +31,10 @@
           </mesh>
         </geometry>
         <material>
-            <ambient>0.0 0.0 0.9 1</ambient>
-            <diffuse>0.0 0.0 0.9 1</diffuse>
-            <specular>0.0 0.0 0.9 1</specular>
+          <diffuse>0 0 0 0.8</diffuse>
+          <ambient>0 0 0 0.8</ambient>
+          <specular>0 0 0 0.8</specular>
+          <emissive>0 0 0 0.8</emissive>
         </material>
       </visual>
     </link>
