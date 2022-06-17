@@ -2,9 +2,15 @@
 <sdf version="1.7">
   <model name="leg">
   
-    <!-- INCLUDE MOTOR -->
-    <link name='legLink'>
+    <!-- LEG LINK -->
+    <!-- Así hay un link leg genérico que no depende de lo que haya después -->
+    <link name="lLink"/>
       <pose>0 0 0 0 0 0</pose>
+    </link>
+    
+    <!-- INCLUDE MOTORS-->
+    <link name="mLink">
+      <pose relative_to="j_l_m">0 0 0 0 0 0</pose>
       <inertial>
         <mass>0.6</mass>
         <inertia>
@@ -40,10 +46,16 @@
       </visual>
     </link>
 
+    <!-- JOINT LEG - MOTORS -->
+    <joint name="j_l_m" type="fixed">
+      <pose relative_to="lLink">0 0 0 0 0 0</pose>
+      <parent>lLink</parent>
+      <child>mLink</child>
+    </joint>
 
     <!-- INCLUDE FRAME MOTOR 1 -->
     <link name="fm1Link">
-      <pose relative_to="j_l_fm1">-0.013863 -0.019021 -0.01165 0 0 0</pose>
+      <pose relative_to="j_m_fm1">-0.013863 -0.019021 -0.01165 0 0 0</pose>
       <inertial>
         <mass>0.1</mass>
         <inertia>
@@ -80,10 +92,10 @@
       </visual>
     </link>
 
-    <!-- JOINT LEG - FRAME MOTOR 1 -->
-    <joint name="j_l_fm1" type="revolute">
-      <pose relative_to="legLink">0.066412 0.019015 0.012752 0 0 0 </pose>
-      <parent>legLink</parent>
+    <!-- JOINT MOTORS - FRAME MOTOR 1 -->
+    <joint name="j_m_fm1" type="revolute">
+      <pose relative_to="mLink">0.066412 0.019015 0.012752 0 0 0 </pose>
+      <parent>mLink</parent>
       <child>fm1Link</child>
       <axis>
         <xyz>0 1 0</xyz>
@@ -92,14 +104,14 @@
 
     <!-- NO VA TODAVIA
             <plugin filename="ignition-gazebo-joint-position-controller-system" name="ignition::gazebo::systems::JointPositionController">
-              <joint_name>l1:j_l_fm1</joint_name>
+              <joint_name>l1:j_m_fm1</joint_name>
               <topic>pos_j_l1_fm1</topic>
             </plugin> -->
 
 
     <!-- INCLUDE FRAME MOTOR 2 -->
     <link name="fm2Link">
-      <pose relative_to="j_l_fm2">0.013867 0.001149 -0.011636 0 0 0</pose>
+      <pose relative_to="j_m_fm2">0.013867 0.001149 -0.011636 0 0 0</pose>
       <inertial>
         <mass>0.1</mass>
         <inertia>
@@ -136,10 +148,10 @@
       </visual>
     </link>
 
-    <!-- JOINT LEG - FRAME MOTOR 2 -->
-    <joint name="j_l_fm2" type="revolute">
-      <pose relative_to="legLink">-0.057399 0.018994 0.012734 0 0 0 </pose>
-      <parent>legLink</parent>
+    <!-- JOINT MOTORS - FRAME MOTOR 2 -->
+    <joint name="j_m_fm2" type="revolute">
+      <pose relative_to="mLink">-0.057399 0.018994 0.012734 0 0 0 </pose>
+      <parent>mLink</parent>
       <child>fm2Link</child>
       <axis>
         <xyz>0 1 0</xyz>
@@ -148,7 +160,7 @@
 
     <!-- INCLUDE FRAME MOTOR 3 -->
     <link name="fm3Link">
-      <pose relative_to="j_l_fm3">-0.013867 -0.001149 -0.011636 0 0 0</pose>
+      <pose relative_to="j_m_fm3">-0.013867 -0.001149 -0.011636 0 0 0</pose>
       <inertial>
         <mass>0.1</mass>
         <inertia>
@@ -185,10 +197,10 @@
       </visual>
     </link>
 
-    <!-- JOINT LEG - FRAME MOTOR 3 -->
-    <joint name="j_l_fm3" type="revolute">
-      <pose relative_to="legLink">-0.012388 -0.019006 0.012734 0 0 0 </pose>
-      <parent>legLink</parent>
+    <!-- JOINT MOTORS - FRAME MOTOR 3 -->
+    <joint name="j_m_fm3" type="revolute">
+      <pose relative_to="mLink">-0.012388 -0.019006 0.012734 0 0 0 </pose>
+      <parent>mLink</parent>
       <child>fm3Link</child>
       <axis>
         <xyz>0 1 0</xyz>

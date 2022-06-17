@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="simpleLeg">
+    
+    <!-- LEG LINK -->
+    <!-- Así hay un link leg genérico que no depende de lo que haya después -->
+    <link name="lLink">
+      <pose>0 0 0 0 0 0</pose>
+    </link>
+    
+    <!-- INCLUDE MOTORS-->
+    <link name="mLink">
+      <pose relative_to="j_l_m">0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.6</mass>
+        <inertia>
+          <ixx>0.032</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.032</iyy>
+          <iyz>0</iyz>
+          <izz>0.00012</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.166 0.038 0.0465</size> <!--Lmx Lmy Lmz-->
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <transparency>0.1</transparency>
+        <!--<pose relative_to="mLink">0 0 0 0 0 0</pose>-->
+        <geometry>
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg/meshes/leg_motor.stl</uri>
+          </mesh>-->
+		      <box>
+		        <size>0.166 0.038 0.0465</size>
+		      </box>
+        </geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.2 0.2 0.2 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+    
+    <!-- JOINT LEG - MOTORS -->
+    <joint name="j_l_m" type="fixed">
+      <pose relative_to="lLink">0 0 0 0 0 0</pose>
+      <parent>lLink</parent>
+      <child>mLink</child>
+    </joint>
+    
+    <!-- INCLUDE FRAMES -->
+    <link name="fLink">
+      <!--El centro de masas de frames está a la mitad de la altura de frames desde la unión de motores y
+      frames, en la cara superior de los motores: Lf/2=0.0765/2=0.03825-->
+      <pose relative_to="j_m_f">0 0 0.03825 0 0 0</pose>       
+      <inertial>
+        <mass>0.6</mass>
+        <inertia>
+          <ixx>0.192</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.192</iyy>
+          <iyz>0</iyz>
+          <izz>0.00072</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius> <!--Rf-->
+            <length>0.0765</length> <!--Lf-->
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <!--<pose relative_to="lLink">0 0 0 0 0 0</pose>-->
+        <transparency>0.1</transparency>
+        <geometry>
+          <!--<mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg/meshes/leg_frames.stl</uri>
+          </mesh>-->
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.0765</length>
+          </cylinder>
+        </geometry>
+          <material>
+            <ambient>0.0 0.0 0 1</ambient>
+            <diffuse>0.0 0.0 0 1</diffuse>
+            <specular>0.0 0.0 0 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+
+    <!-- JOINT MOTORS - FRAMES -->
+    <joint name="j_m_f" type="fixed">
+       <!--La unión de motors y frames está en la cara superior de los motores, a la mitad de la altura de los motores desde el centro de masas de los motores: Lmz/2=0.0465/2=0.02325-->
+      <pose relative_to="mLink">0 0 0.02325 0 0 0</pose>
+      <parent>mLink</parent>
+      <child>fLink</child>
+      <!--<axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.785398</lower>
+          <upper>0.785398</upper>
+        </limit>
+      </axis>-->
+    </joint>
+    
+  </model>
+</sdf>

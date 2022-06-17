@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <sdf version="1.7">
-  <model name="b">
-    <link name='bodyLink'>
+  <model name="body">
+    <link name='bLink'>
       <pose>0 0 0 0 0 0</pose>
       <inertial>
         <mass>1.8</mass>

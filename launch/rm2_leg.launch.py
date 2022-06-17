@@ -26,29 +26,20 @@ def generate_launch_description():
                   package='ros_ign_gazebo',
                   executable='create',
                   arguments=[
-                    '-name', 'rm2_simple',
-                    '-file',  os.path.join(pkg, 'models', 'rm2_simple', 'model.sdf'),
-                    '-z', '0.5'
+                    '-name', 'rm2_simple_leg',
+                    '-file',  os.path.join(pkg, 'models', 'rm2_simple_leg', 'model.sdf'),
+                    '-z', '0.0',
                     ],
                 output='screen',
                 )
                 
-    spawn2 = Node(package='ros_ign_gazebo', executable='create',
-                arguments=[
-                    '-name', 'rm2_simple_2',
-                    '-file',  os.path.join(pkg, 'models', 'rm2_simple', 'model.sdf'),
-                    '-x', '1.0',
-                    '-z', '0.5'
-                    ],
-                output='screen',
-                )
+
     
     return LaunchDescription([
       DeclareLaunchArgument(
           'ign_args',
           default_value=[os.path.join(pkg, 'worlds', 'empty.sdf')]),
         ign_gazebo,
-        spawn,
-        spawn2
+        spawn
     ])
 
