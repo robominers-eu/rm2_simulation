@@ -23,19 +23,12 @@
         </geometry>
       </collision>
       <visual name='visual'>
-        <transparency>0.3</transparency>
         <geometry>
           <mesh>
-            <scale> 0.001 0.001 0.001</scale>
-            <uri>model://rm2_body/meshes/body_structure_blue.stl</uri>
+           <!-- <scale> 0.001 0.001 0.001</scale>--> 
+            <uri>model://rm2_body/meshes/b_simple.dae</uri>
           </mesh>
         </geometry>
-        <material>
-          <diffuse>0 0 0 0.8</diffuse>
-          <ambient>0 0 0 0.8</ambient>
-          <specular>0 0 0 0.8</specular>
-          <emissive>0 0 0 0.8</emissive>
-        </material>
       </visual>
     </link>
   </model>

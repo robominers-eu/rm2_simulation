@@ -16,14 +16,22 @@ def generate_launch_description():
   pkg_ros_ign_gazebo = get_package_share_directory('ros_ign_gazebo')
   pkg = get_package_share_directory('rm2_simulation')
     
-  ign_gazebo = IncludeLaunchDescription( PythonLaunchDescriptionSource(
-  os.path.join(pkg_ros_ign_gazebo, 'launch', 'ign_gazebo.launch.py'))) #launch_arguments={'ign_args': os.path.join(pkg, 'worlds', 'cave_world.sdf')}.items(),)
-            
-  return LaunchDescription([
-     DeclareLaunchArgument('ign_args',
-     default_value=[os.path.join(pkg, 'worlds', 'ground_world.sdf') +' --gui-config ' +
-      os.path.join(pkg, 'ign', 'gui.config'), ''], description='Ignition Gazebo arguments'),
-        ign_gazebo
-        #  spawn,
-    ])
+  ign_gazebo = IncludeLaunchDescription( 
+    PythonLaunchDescriptionSource(
+        os.path.join(pkg_ros_ign_gazebo, 'launch', 'ign_gazebo.launch.py')
+        ),
+  )
+  spawn_sdf = Node(package='ros_ign_gazebo', executable='create',
+			arguments=['-name', 'rm2',
+				'-file', os.path.join(pkg, 'models', 'rm2_module', 'model.sdf')],
+			output='screen')
 
+  return LaunchDescription([
+    DeclareLaunchArgument(
+		  'ign_args', default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf') +
+					 ' -v 2 --gui-config ' +
+					 os.path.join(pkg, 'ign', 'gui.config'), ''],
+		  description='Ignition Gazebo arguments'),
+        ign_gazebo,
+        spawn_sdf,
+    ])
