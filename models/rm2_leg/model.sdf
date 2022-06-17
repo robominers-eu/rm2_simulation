@@ -294,7 +294,7 @@
         <xyz>0 1 0</xyz>
       </axis>
     </joint>
-
+    
     <!-- INCLUDE ACTUATOR 
     <link name="aLink">
       <pose relative_to="j_a_fa1">-0.039354 -0.024243 0.012507 0 0</pose>
@@ -329,7 +329,8 @@
       </visual>
     </link>-->
 
-    <!-- JOINT ACTUATOR - FRAME ACTUATOR 1 
+
+    <!-- JOINT ACTUATOR - FRAME ACTUATOR 1
     <joint name="j_a_fa1" type="fixed">
       <pose relative_to="fa1Link"> 0.009816 0.024 0.028349 0 0 0 </pose>
       <parent>fa1Link</parent>
@@ -338,7 +339,7 @@
         <xyz>0 1 0</xyz>
       </axis>
     </joint> -->
-
+    
     <!-- JOINT ACTUATOR - FRAME ACTUATOR 2 
     <joint name="j_a_fa2" type="fixed">
       <pose relative_to="fa2Link"> -0.009816 0.0015 0.028349 0 </pose>
