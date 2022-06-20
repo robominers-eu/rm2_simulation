@@ -25,8 +25,8 @@
       <collision name='collision'>
         <geometry>
           <cylinder>
-            <radius>0.010</radius> <!--Rab-->
-            <length>0.200</length> <!--Lab-->
+            <radius>0.009</radius> <!--Rab-->
+            <length>0.120</length> <!--Lab-->
           </cylinder>
         </geometry>
       </collision>
@@ -34,8 +34,8 @@
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.010</radius> <!--Rab-->
-            <length>0.200</length> <!--Lab-->
+            <radius>0.009</radius> <!--Rab-->
+            <length>0.120</length> <!--Lab-->
           </cylinder>
         </geometry>
           <material>
@@ -71,16 +71,17 @@
       <collision name='collision'>
         <geometry>
           <cylinder>
-            <radius>0.050</radius>
-            <length>0.010</length>
+            <radius>0.034</radius>
+            <length>0.020</length>
           </cylinder>
         </geometry>
       </collision>
       <visual name='visual'>
+        <pose relative_to="j_ab_fw">0 0 0 0 0 1.5708</pose>
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.040</radius> <!--Rfw-->
+            <radius>0.034</radius> <!--Rfw-->
             <length>0.020</length> <!--Wfw-->
           </cylinder>
         </geometry>
@@ -94,7 +95,7 @@
     
     <!-- JOINT ACTUATOR BASE - FRONT WHEEL -->
     <joint name="j_ab_fw" type="revolute">
-      <pose relative_to="abLink">0 0.01 0.1 -1.5708 0 0.698132</pose><!--La unión de la base del actuador y la rueda delantera está a la mitad de la longitud de la base del actuador desde su centro de masas en el eje abZ con sentido positivo: Lab/2=0.2/2=0.1; y a un radio de la base del actuador en el eje abY con sentido negativo: Rab=0.01
+      <pose relative_to="abLink">0 0.009 0.060 -1.5708 0 0.698132</pose><!--La unión de la base del actuador y la rueda delantera está a la mitad de la longitud de la base del actuador desde su centro de masas en el eje abZ con sentido positivo: Lab/2=0.2/2=0.1; y a un radio de la base del actuador en el eje abY con sentido negativo: Rab=0.01
       Además, hay que orientar el eje local de la rueda delantera, fwZ, con el eje local de la base del actuador y, abY, girando 90º desde el eje x: roll=pi/2=-1.5708-->
       <parent>abLink</parent>
       <child>fwLink</child>
@@ -122,8 +123,8 @@
       <collision name='collision'>
         <geometry>
           <cylinder>
-            <radius>0.050</radius>
-            <length>0.010</length>
+            <radius>0.034</radius>
+            <length>0.020</length>
           </cylinder>
         </geometry>
       </collision>
@@ -131,7 +132,7 @@
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.040</radius><!--Rbw-->
+            <radius>0.034</radius><!--Rbw-->
             <length>0.020</length><!--Wbw-->
           </cylinder>
         </geometry>
@@ -147,7 +148,7 @@
     <joint name="j_ab_bw" type="revolute">
       <!--La unión de la base del actuador y la rueda trasera está a la mitad de la longitud de la base del actuador desde su centro de masas en el eje abZ con sentido negativo: Lab/2=0.2/2=0.1; y a un radio de la base del actuador en el eje abY con sentido positivo: Rab=0.01. Visto en el robot en su conjunto la rueda derecha queda a la derecha pero en ejes locales queda a la izquierda.
       Además, hay que orientar el eje local de la rueda delantera, bwZ, con el eje local de la base del actuador y, abY, girando 90º desde el eje x: roll=pi/2=-1.5708-->
-      <pose relative_to="abLink">0 0.01 -0.1 -1.5708 0 0.698132</pose>
+      <pose relative_to="abLink">0 0.01 -0.060 -1.5708 0 0.698132</pose>
       <parent>abLink</parent>
       <child>bwLink</child>
       <axis>

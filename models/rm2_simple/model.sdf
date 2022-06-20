@@ -64,16 +64,16 @@
     
     <!-- INCLUDE SIMPLE ACTUATOR 1 - ABOVE -->
     <include>
-      <pose relative_to="j_l1_a1">0 0 0.0106 0 -1.5708 0</pose>
+      <pose relative_to="j_l1_sa1">0 0 0.0106 0 -1.5708 0</pose>
       <uri>model://rm2_simple_actuator</uri>
-      <name>a1</name>
+      <name>sa1</name>
     </include>
 
     <!-- JOINT SIMPLE LEG 1 - SIMPLE ACTUATOR 1 - ABOVE -->
-    <joint name="j_l1_a1" type="fixed">
+    <joint name="j_l1_sa1" type="fixed">
       <pose relative_to="l1::fLink">0 0 0.03825 0 0 0 </pose>
       <parent>l1::fLink</parent>
-      <child>a1::aLink</child>
+      <child>sa1::aLink</child>
       <!--<axis>
         <xyz>1 0 0</xyz>
         <limit>
@@ -84,12 +84,12 @@
     </joint>
     
     <!-- POSITION JOINT SIMPLE LEG 1 - SIMPLE ACTUATOR 1 - ABOVE -->
-    <!--ign topic -t "/pos_j_l1_a1" -m ignition.msgs.Double -p "data: 0.0"-->
+    <!--ign topic -t "/pos_j_l1_sa1" -m ignition.msgs.Double -p "data: 0.0"-->
     <!--<plugin
       filename="ignition-gazebo-joint-position-controller-system"
       name="ignition::gazebo::systems::JointPositionController">
-      <joint_name>j_l1_a1</joint_name>
-      <topic>pos_j_l1_a1</topic>
+      <joint_name>j_l1_sa1</joint_name>
+      <topic>pos_j_l1_sa1</topic>
       <p_gain>4</p_gain>
       <i_gain>1</i_gain>
       <d_gain>1</d_gain>
@@ -100,20 +100,20 @@
     </plugin>-->
     
     <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 1 - FORWARD SIMPLE ACTUATOR 1 - ABOVE -->
-    <!--ign topic -t "/model/rm2_simple/joint/a1::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa1::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
     <!--<plugin
       filename="ignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
-      <joint_name>a1::j_ab_fa</joint_name>
+      <joint_name>sa1::j_ab_fa</joint_name>
       <initial_velocity>0.1</initial_velocity>
     </plugin>-->
     
     <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 1 - BACKWARD SIMPLE ACTUATOR 1 - ABOVE -->
-    <!--ign topic -t "/model/rm2_simple/joint/a1::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa1::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
     <!--<plugin
       filename="ignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
-      <joint_name>a1::j_ab_ba</joint_name>
+      <joint_name>sa1::j_ab_ba</joint_name>
       <initial_velocity>0.1</initial_velocity>
     </plugin>-->
     
@@ -172,16 +172,16 @@
     
     <!-- INCLUDE SIMPLE ACTUATOR 2 - LEFT -->
     <include>
-      <pose relative_to="j_l2_a2">0 0 0.0106 0 -1.5708 0</pose>
+      <pose relative_to="j_l2_sa2">0 0 0.0106 0 -1.5708 0</pose>
       <uri>model://rm2_simple_actuator</uri>
-      <name>a2</name>
+      <name>sa2</name>
     </include>
 
     <!-- JOINT SIMPLE LEG 2 - SIMPLE ACTUATOR 2 - LEFT -->
-    <joint name="j_l2_a2" type="fixed">
+    <joint name="j_l2_sa2" type="fixed">
       <pose relative_to="l2::fLink">0 0 0.03825 0 0 0 </pose>
       <parent>l2::fLink</parent>
-      <child>a2::aLink</child>
+      <child>sa2::aLink</child>
       <!--<axis>
         <xyz>1 0 0</xyz>
         <limit>
@@ -192,20 +192,20 @@
     </joint>
     
     <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 2 - FORWARD SIMPLE ACTUATOR 2 - LEFT -->
-    <!--ign topic -t "/model/rm2_simple/joint/a2::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
     <plugin
       filename="ignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
-      <joint_name>a2::j_ab_fa</joint_name>
+      <joint_name>sa2::j_ab_fa</joint_name>
       <initial_velocity>0.0</initial_velocity>
     </plugin>
     
     <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 2 - BACKWARD SIMPLE ACTUATOR 2 - LEFT -->
-    <!--ign topic -t "/model/rm2_simple/joint/a2::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
     <plugin
       filename="ignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
-      <joint_name>a2::j_ab_ba</joint_name>
+      <joint_name>sa2::j_ab_ba</joint_name>
       <initial_velocity>0.0</initial_velocity>
     </plugin>
     
@@ -264,16 +264,16 @@
     
     <!-- INCLUDE SIMPLE ACTUATOR 3 - RIGHT -->
     <include>
-      <pose relative_to="j_l3_a3">0 0 0.0106 0 -1.5708 0</pose>
+      <pose relative_to="j_l3_sa3">0 0 0.0106 0 -1.5708 0</pose>
       <uri>model://rm2_simple_actuator</uri>
-      <name>a3</name>
+      <name>sa3</name>
     </include>
 
     <!-- JOINT SIMPLE LEG 3 - SIMPLE ACTUATOR 3 - RIGHT -->
-    <joint name="j_l3_a3" type="fixed">
+    <joint name="j_l3_sa3" type="fixed">
       <pose relative_to="l3::fLink">0 0 0.03825 0 0 0 </pose>
       <parent>l3::fLink</parent>
-      <child>a3::aLink</child>
+      <child>sa3::aLink</child>
       <!--<axis>
         <xyz>1 0 0</xyz>
         <limit>
@@ -284,20 +284,20 @@
     </joint>
 
     <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 3 - FORWARD SIMPLE ACTUATOR 3 - RIGHT -->
-    <!--ign topic -t "/model/rm2_simple/joint/a3::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa3::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
     <plugin
       filename="ignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
-      <joint_name>a3::j_ab_fa</joint_name>
+      <joint_name>sa3::j_ab_fa</joint_name>
       <initial_velocity>0.0</initial_velocity>
     </plugin>
     
     <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 3 - BACKWARD SIMPLE ACTUATOR 3 - TIGHY -->
-    <!--ign topic -t "/model/rm2_simple/joint/a3::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <!--ign topic -t "/model/rm2_simple/joint/sa3::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
     <plugin
       filename="ignition-gazebo-joint-controller-system"
       name="ignition::gazebo::systems::JointController">
-      <joint_name>a3::j_ab_ba</joint_name>
+      <joint_name>sa3::j_ab_ba</joint_name>
       <initial_velocity>0.0</initial_velocity>
     </plugin>
 
@@ -308,10 +308,10 @@
       <topic>control</topic>
       <topic_jbl2>j_b_l2</topic_jbl2>
       <topic_jbl3>j_b_l3</topic_jbl3>
-      <topic_jabfl2>model/rm2_simple/joint/a2::j_ab_fa/cmd_vel</topic_jabfl2>
-      <topic_jabbl2>model/rm2_simple/joint/a2::j_ab_ba/cmd_vel</topic_jabbl2>
-      <topic_jabfl3>model/rm2_simple/joint/a3::j_ab_fa/cmd_vel</topic_jabfl3>
-      <topic_jabbl3>model/rm2_simple/joint/a3::j_ab_ba/cmd_vel</topic_jabbl3>
+      <topic_jabfl2>model/rm2_simple/joint/sa2::j_ab_fa/cmd_vel</topic_jabfl2>
+      <topic_jabbl2>model/rm2_simple/joint/sa2::j_ab_ba/cmd_vel</topic_jabbl2>
+      <topic_jabfl3>model/rm2_simple/joint/sa3::j_ab_fa/cmd_vel</topic_jabfl3>
+      <topic_jabbl3>model/rm2_simple/joint/sa3::j_ab_ba/cmd_vel</topic_jabbl3>
     </plugin>-->
   </model>
 </sdf>

@@ -87,12 +87,11 @@
         </geometry>
       </collision>
       <visual name="visual">
-        <pose relative_to="lLink">0 0 0 0 0 0</pose>
+        <pose relative_to="mLink">0 0 0 0 0 0</pose>
         <transparency>0.1</transparency>
         <geometry>
           <mesh>
-            <scale> 0.001 0.001 0.001</scale>
-            <uri>model://rm2_simple_leg/meshes/leg_frames.stl</uri>
+            <uri>model://rm2_simple_leg/meshes/frames.dae</uri>
           </mesh>
           <!--<cylinder>
             <radius>0.005</radius>
@@ -119,6 +118,60 @@
       <pose relative_to="mLink">0 0 0.02325 0 0 0</pose>
       <parent>mLink</parent>
       <child>fLink</child>
+    </joint>
+    
+    <!-- INCLUDE FRAMES -->
+    <link name="sfLink">
+      <!--El centro de masas de frames está a la mitad de la altura de frames desde la unión de motores y
+      frames, en la cara superior de los motores: Lf/2=0.0765/2=0.03825-->
+      <pose relative_to="j_m_sf">0 0 0.03825 0 0 0</pose>       
+      <inertial>
+        <mass>0.6</mass>
+        <inertia>
+          <ixx>0.192</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.192</iyy>
+          <iyz>0</iyz>
+          <izz>0.00072</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius> <!--Rf-->
+            <length>0.0765</length> <!--Lf-->
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <transparency>0.1</transparency>
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.0765</length>
+          </cylinder>
+        </geometry>
+          <material>
+            <ambient>0.0 0.0 0 1</ambient>
+            <diffuse>0.0 0.0 0 1</diffuse>
+            <specular>0.0 0.0 0 1</specular>
+          </material>
+        <!--<material>
+          <diffuse>0 0 0.5 0.1</diffuse>
+          <ambient>0 0 0.5 0.1</ambient>
+          <specular>0 0 0.5 0.1</specular>
+          <emissive>0 0 0.5 0.1</emissive>
+        </material>-->
+      </visual>
+    </link>
+
+    <!-- JOINT MOTORS - FRAMES -->
+    <joint name="j_m_sf" type="fixed">
+       <!--La unión de motors y frames está en la cara superior de los motores, a la mitad de la altura de los motores desde el centro de masas de los motores: Lmz/2=0.0465/2=0.02325-->
+      <pose relative_to="mLink">0 0 0.02325 0 0 0</pose>
+      <parent>mLink</parent>
+      <child>sfLink</child>
       <!--<axis>
         <xyz>0 1 0</xyz>
         <limit>

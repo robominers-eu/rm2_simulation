@@ -22,21 +22,24 @@
           <izz>0.00024</izz>
         </inertia>
       </inertial>
-      <collision name="collision">
+      <!--<collision name="collision">
         <geometry>
           <cylinder>
-            <radius>0.020</radius>
+            <radius>0.010</radius>
             <length>0.050</length>
           </cylinder>
         </geometry>
-      </collision>
+      </collision>-->
       <visual name="visual">
         <transparency>0.1</transparency>
         <geometry>
-          <cylinder>
-            <radius>0.020</radius>
+          <mesh>
+            <uri>model://rm2_simple_actuator/meshes/screw_base.dae</uri>
+          </mesh>
+          <!--<cylinder>
+            <radius>0.010</radius>
             <length>0.050</length>
-          </cylinder>
+          </cylinder>-->
         </geometry>
           <material>
             <ambient>0.8 0.8 0.8 1</ambient>
@@ -61,7 +64,7 @@
 
     <!-- INCLUDE FORWARD ACTUATOR -->
     <link name="faLink">
-      <pose relative_to="j_ab_fa">0 0 -0.0415 0 0 0</pose>
+      <pose relative_to="j_ab_fa">0 -0.001 0.04 0 0 0</pose>
       <inertial>
         <mass>0.2</mass>
         <inertia>
@@ -73,47 +76,37 @@
           <izz>0.00024</izz>
         </inertia>
       </inertial>
-      <collision name="collision">
+      <!--<collision name="collision">
         <geometry>
-          <!--<mesh>
-            <scale> 0.001 0.001 0.001</scale>
-            <uri>model://rm2_simple_leg_actuator/meshes/leg_motor.stl</uri>
-          </mesh>-->
           <cylinder>
             <radius>0.022</radius>
             <length>0.083</length>
           </cylinder>
         </geometry>
-      </collision>
+      </collision>-->
       <visual name="visual">
         <transparency>0.1</transparency>
         <geometry>
-          <cylinder>
+          <mesh>
+            <!--<scale> 0.001 0.001 0.001</scale>-->
+            <uri>model://rm2_simple_actuator/meshes/forward_screw.dae</uri>
+          </mesh>
+          <!--<cylinder>
             <radius>0.022</radius>
             <length>0.083</length>
-          </cylinder>
-          <!--<mesh>
-            <scale> 0.001 0.001 0.001</scale>
-            <uri>model://rm2_leg/meshes/fm1_real.stl</uri>
-          </mesh>-->
+          </cylinder>-->
         </geometry>
-          <material>
+          <!--<material>
             <ambient>0.8 0.8 0.8 1</ambient>
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
-          </material>
-        <!--<material>
-          <diffuse>0 0 0.5 0.1</diffuse>
-          <ambient>0 0 0.5 0.1</ambient>
-          <specular>0 0 0.5 0.1</specular>
-          <emissive>0 0 0.5 0.1</emissive>
-        </material>-->
+          </material>-->
       </visual>
     </link>
     
     <!-- JOINT ACTUATOR BASE - FORWARD ACTUATOR -->
     <joint name="j_ab_fa" type="revolute">
-      <pose relative_to="abLink">0 0 -0.025 0 0 0 </pose>
+      <pose relative_to="abLink">0.010 0 0 0 1.5708 0 </pose>
       <parent>abLink</parent>
       <child>faLink</child>
       <axis>
@@ -122,8 +115,8 @@
     </joint>    
 
     <!-- INCLUDE BACKWARD ACTUATOR -->
-    <link name="backwardActuatorLink">
-      <pose relative_to="j_ab_ba">0 0 0.0415 0 0 0</pose>
+    <link name="baLink">
+      <pose relative_to="j_ab_ba">0 -0.001 0.04 0 0 0</pose>
       <inertial>
         <mass>0.2</mass>
         <inertia>
@@ -135,102 +128,47 @@
           <izz>0.00024</izz>
         </inertia>
       </inertial>
-      <collision name="collision">
+      <!--<collision name="collision">
         <geometry>
-          <!--<mesh>
+          <!-<mesh>
             <scale> 0.001 0.001 0.001</scale>
             <uri>model://rm2_simple_leg_actuator/meshes/leg_motor.stl</uri>
-          </mesh>-->
+          </mesh>->
           <cylinder>
             <radius>0.022</radius>
             <length>0.083</length>
           </cylinder>
         </geometry>
-      </collision>
+      </collision>-->
       <visual name="visual">
         <transparency>0.1</transparency>
         <geometry>
-          <cylinder>
+          <mesh>
+            <uri>model://rm2_simple_actuator/meshes/backward_screw.dae</uri>
+          </mesh>
+          <!--<cylinder>
             <radius>0.022</radius>
             <length>0.083</length>
-          </cylinder>
-          <!--<box>
-            <size>0.022 0.022 0.083</size>
-          </box>-->
-          <!--<mesh>
-            <scale> 0.001 0.001 0.001</scale>
-            <uri>model://rm2_leg/meshes/fm1_real.stl</uri>
-          </mesh>-->
+          </cylinder>->-->
         </geometry>
-          <material>
+          <!--<material>
             <ambient>0.8 0.8 0.8 1</ambient>
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
-          </material>
-        <!--<material>
-          <diffuse>0 0 0.5 0.1</diffuse>
-          <ambient>0 0 0.5 0.1</ambient>
-          <specular>0 0 0.5 0.1</specular>
-          <emissive>0 0 0.5 0.1</emissive>
-        </material>-->
+          </material>-->
       </visual>
     </link>
     
     <!-- JOINT ACTUATOR BASE - BACKWARD ACTUATOR -->
     <joint name="j_ab_ba" type="revolute">
-      <pose relative_to="abLink">0 0 0.025 0 0 0 </pose>
+      <pose relative_to="abLink">-0.010 0 0 0 -1.5708 0 </pose>
       <parent>abLink</parent>
-      <child>backwardActuatorLink</child>
+      <child>baLink</child>
       <axis>
         <xyz>0 0 1</xyz>
       </axis>
     </joint>  
-    
-    
-    <!--ign topic -t "/j_w_m_cmd" -m ignition.msgs.Double -p "data: 0.0"-->
-    <!--<plugin
-      filename="ignition-gazebo-joint-position-controller-system"
-      name="ignition::gazebo::systems::JointPositionController">
-      <joint_name>j_w_m</joint_name>
-      <topic>j_w_m_cmd</topic>
-      <p_gain>0.2</p_gain>
-      <i_gain>0.0</i_gain>
-      <d_gain>0.2</d_gain>
-      <i_max>1</i_max>
-      <i_min>-1</i_min>
-      <cmd_max>1000</cmd_max>
-      <cmd_min>-1000</cmd_min>
-    </plugin>-->
-    
-    <!--ign topic -t "/j_l_fm_cmd" -m ignition.msgs.Double -p "data: 0.0"-->
-    <!--<plugin
-      filename="ignition-gazebo-joint-position-controller-system"
-      name="ignition::gazebo::systems::JointPositionController">
-      <joint_name>j_l_fm</joint_name>
-      <topic>j_l_fm_cmd</topic>
-      <p_gain>0.2</p_gain>
-      <i_gain>0.0</i_gain>
-      <d_gain>0.2</d_gain>
-      <i_max>1</i_max>
-      <i_min>-1</i_min>
-      <cmd_max>1000</cmd_max>
-      <cmd_min>-1000</cmd_min>
-    </plugin>-->
-    
-    <!--ign topic -t "/j_fm_a_cmd" -m ignition.msgs.Double -p "data: 0.0"-->
-    <!--<plugin
-      filename="ignition-gazebo-joint-position-controller-system"
-      name="ignition::gazebo::systems::JointPositionController">
-      <joint_name>j_fm_a</joint_name>
-      <topic>j_fm_a_cmd</topic>
-      <p_gain>0.2</p_gain>
-      <i_gain>0.0</i_gain>
-      <d_gain>0.2</d_gain>
-      <i_max>1</i_max>
-      <i_min>-1</i_min>
-      <cmd_max>1000</cmd_max>
-      <cmd_min>-1000</cmd_min>
-    </plugin>-->
+
   </model>
 </sdf>
     

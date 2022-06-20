@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="rm2_sim">
+  
+    <!-- INCLUDE BODY -->
+    <include>
+      <pose>0 0 0 0 0 0</pose>
+      <uri>model://rm2_body</uri>
+      <name>b</name>
+    </include>
+
+    <!-- INCLUDE SIMPLE LEG 1 - ABOVE -->
+    <include>
+      <pose relative_to="j_b_l1">-0.085512 0 0.011284 0 0 0</pose>
+      <uri>model://rm2_simple_leg</uri>
+      <name>l1</name>
+    </include>
+
+    <!-- JOINT BODY - SIMPLE LEG 1 - ABOVE -->
+    <joint name="j_b_l1" type="fixed">
+      <pose relative_to="b::bLink">0.081 0 0.074985 0 0 0</pose>
+      <parent>b::bLink</parent>
+      <child>l1::lLink</child>
+    </joint>
+
+    <!-- INCLUDE SIMPLE ACTUATOR 1 - ABOVE -->
+    <include>
+      <pose relative_to="j_l1_sa1">0 0 0.015 0 0 0</pose>
+      <uri>model://rm2_simple_actuator</uri>
+      <name>sa1</name>
+    </include>
+
+    <!-- JOINT SIMPLE LEG 1 - ACTUATOR 1 - ABOVE -->
+    <joint name="j_l1_sa1" type="fixed">
+      <pose relative_to="l1::fLink">0 0 0.03825 0 0 0</pose>
+      <parent>l1::fLink</parent>
+      <child>sa1::aLink</child>
+    </joint>
+    
+    <!-- INCLUDE SIMPLE LEG 2 - LEFT -->
+    <include>
+      <pose relative_to="j_b_l2">-0.085512 0 0.011284 0 0 0</pose>
+      <uri>model://rm2_simple_leg</uri>
+      <name>l2</name>
+    </include>
+
+    <!-- JOINT BODY - SIMPLE LEG 2 - LEFT -->
+    <joint name="j_b_l2" type="fixed">
+      <pose relative_to="b::bLink">0.081 0.064947 -0.037515 -2.44346 0 0</pose>
+      <parent>b::bLink</parent>
+      <child>l2::lLink</child>
+    </joint>
+
+    <!-- INCLUDE WHEELS ACTUATOR 2 - LEFT -->
+    <include>
+      <!--El centro de masas de la base del actuador está a un radio del actuador desde la unión de frames y base del actuador, en la cara superior de frames: Rab=0.01-->
+      <pose relative_to="j_l2_wa2">-0.008 0 0 0 0 0</pose>
+      <uri>model://rm2_wheels_actuator_left</uri>
+      <name>wa2</name>
+    </include>
+
+    <!-- JOINT WHEELS LEG 2 - WHEELS ACTUATOR 2 - LEFT -->
+    <joint name="j_l2_wa2" type="fixed">
+      <!--La unión de frames con la base del actuador está en la cara superior de frames, a la mitad de la altura de frames desde el centro de masas de frames: Lf/2=0.765/2=0.03825
+      Además, hay que orientar el eje local de la base del actuador, abZ, con el eje global x, OX, girando 90º desde el eje y: pitch=pi/2=1.5708-->
+      <pose relative_to="l2::fLink">0 0 0.03825 0 1.5708 0</pose>
+      <parent>l2::fLink</parent>
+      <child>wa2::aLink</child>
+    </joint>
+    
+    <!-- INCLUDE SIMPLE ACTUATOR 2 - LEFT -->
+    <include>
+      <pose relative_to="j_l2_sa2">0 0 0.015 0 0 0</pose>
+      <uri>model://rm2_simple_actuator</uri>
+      <name>sa2</name>
+    </include>
+
+    <!-- JOINT SIMPLE LEG 2 - ACTUATOR 2 - LEFT -->
+    <joint name="j_l2_sa2" type="fixed">
+      <pose relative_to="l2::fLink">0 0 0.03825 0 0 0</pose>
+      <parent>l2::fLink</parent>
+      <child>sa2::aLink</child>
+    </joint>
+        
+    <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 2 - FORWARD SIMPLE ACTUATOR 2 - LEFT -->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <plugin
+      filename="ignition-gazebo-joint-controller-system"
+      name="ignition::gazebo::systems::JointController">
+      <joint_name>sa2::j_ab_fa</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    
+    <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 2 - BACKWARD SIMPLE ACTUATOR 2 - LEFT -->
+    <!--ign topic -t "/model/rm2_simple/joint/sa2::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <plugin
+      filename="ignition-gazebo-joint-controller-system"
+      name="ignition::gazebo::systems::JointController">
+      <joint_name>sa2::j_ab_ba</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    
+    <!-- INCLUDE SIMPLE LEG 3 - RIGHT-->
+    <include>
+      <pose relative_to="j_b_l3">-0.085512 0 0.011284 0 0 0</pose>
+      <uri>model://rm2_simple_leg</uri>
+      <name>l3</name>
+    </include>
+
+    <!-- JOINT BODY - SIMPLE LEG 3 - RIGHT -->
+    <joint name="j_b_l3" type="fixed">
+      <pose relative_to="b::bLink">0.081 -0.064947 -0.037515 2.44346 0 0</pose>
+      <parent>b::bLink</parent>
+      <child>l3::lLink</child>
+    </joint>
+    
+    <!-- INCLUDE WHEELS ACTUATOR 3 - RIGHT -->
+    <include>
+      <!--El centro de masas de la base del actuador está a un radio del actuador desde la unión de frames y base del actuador, en la cara superior de frames: Rab=0.01-->
+      <pose relative_to="j_l3_wa3">-0.008 0 0 0 0 0</pose> 
+      <uri>model://rm2_wheels_actuator_right</uri>
+      <name>wa3</name>
+    </include>
+
+    <!-- JOINT WHEELS LEG 3 - WHEELS ACTUATOR 3 - LEFT -->
+    <joint name="j_l3_wa3" type="fixed">
+      <pose relative_to="l3::fLink">0 0 0.03825 0 1.5708 0 </pose>
+      <!--La unión de frames con la base del actuador está en la cara superior de frames, a la mitad de la altura de frames desde el centro de masas de frames: Lf/2=0.0765/2=0.03825
+      Además, hay que orientar el eje local de la base del actuador, abZ, con el eje global x, OX, girando 90º desde el eje y: pitch=pi/2=1.5708-->
+      <parent>l3::fLink</parent>
+      <child>wa3::aLink</child>
+    </joint>
+
+    <!-- INCLUDE SIMPLE ACTUATOR 3 - RIGHT -->
+    <include>
+      <pose relative_to="j_l3_sa3">0 0 0.015 0 0 0</pose>
+      <uri>model://rm2_simple_actuator</uri>
+      <name>sa3</name>
+    </include>
+
+    <!-- JOINT SIMPLE LEG 3 - ACTUATOR 3 - RIGHT -->
+    <joint name="j_l3_sa3" type="fixed">
+      <pose relative_to="l3::fLink">0 0 0.03825 0 0 0</pose>
+      <parent>l3::fLink</parent>
+      <child>sa3::aLink</child>
+    </joint>
+
+    <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 3 - FORWARD SIMPLE ACTUATOR 3 - RIGHT -->
+    <!--ign topic -t "/model/rm2_simple/joint/sa3::j_ab_fa/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <plugin
+      filename="ignition-gazebo-joint-controller-system"
+      name="ignition::gazebo::systems::JointController">
+      <joint_name>sa3::j_ab_fa</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    
+    <!-- VELOCITY JOINT SIMPLE ACTUATOR BASE 3 - BACKWARD SIMPLE ACTUATOR 3 - TIGHY -->
+    <!--ign topic -t "/model/rm2_simple/joint/sa3::j_ab_ba/cmd_vel" -m ignition.msgs.Double -p "data: -1.0"-->
+    <plugin
+      filename="ignition-gazebo-joint-controller-system"
+      name="ignition::gazebo::systems::JointController">
+      <joint_name>sa3::j_ab_ba</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+
+    <!-- DIFFERENTIAL DRIVE -->
+    <!--ign topic -t "/cmd_vel" -m ignition.msgs.Twist -p "linear: {x: 0.5}, angular: {z: 0.05}"-->
+    <plugin filename="libignition-gazebo-diff-drive-system.so" name="ignition::gazebo::systems::DiffDrive">
+      <left_joint>wa2::j_ab_fw</left_joint>
+      <left_joint>wa2::j_ab_bw</left_joint>
+      <right_joint>wa3::j_ab_fw</right_joint>
+      <right_joint>wa3::j_ab_bw</right_joint>
+      <wheel_separation>0.31</wheel_separation>
+      <wheel_radius>0.04</wheel_radius>
+      <odom_publish_frequency>1000</odom_publish_frequency>
+      <topic>/cmd_vel</topic>
+    </plugin>
+    
+  </model>
+</sdf>
