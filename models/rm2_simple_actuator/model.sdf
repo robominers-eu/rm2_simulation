@@ -52,7 +52,7 @@
       </visual>
     </link>
     
-    <!-- JOINT ACTUATOR - BASE ACTUATOR -->
+    <!-- JOINT ACTUATOR - ACTUATOR BASE -->
     <joint name="j_a_ba" type="fixed">
       <pose relative_to="aLink">0 0 0 0 0 0</pose>
       <parent>aLink</parent>

@@ -33,13 +33,13 @@
         <transparency>0.1</transparency>
         <!--<pose relative_to="mLink">0 0 0 0 0 0</pose>-->
         <geometry>
-          <!--<mesh>
+          <mesh>
             <scale> 0.001 0.001 0.001</scale>
             <uri>model://rm2_simple_leg/meshes/leg_motor.stl</uri>
-          </mesh>-->
-		      <box>
+          </mesh>
+		      <!--<box>
 		        <size>0.166 0.038 0.0465</size>
-		      </box>
+		      </box>-->
         </geometry>
           <material>
             <ambient>0.2 0.2 0.2 1</ambient>
@@ -87,17 +87,17 @@
         </geometry>
       </collision>
       <visual name="visual">
-        <!--<pose relative_to="lLink">0 0 0 0 0 0</pose>-->
+        <pose relative_to="lLink">0 0 0 0 0 0</pose>
         <transparency>0.1</transparency>
         <geometry>
-          <!--<mesh>
+          <mesh>
             <scale> 0.001 0.001 0.001</scale>
             <uri>model://rm2_simple_leg/meshes/leg_frames.stl</uri>
-          </mesh>-->
-          <cylinder>
+          </mesh>
+          <!--<cylinder>
             <radius>0.005</radius>
             <length>0.0765</length>
-          </cylinder>
+          </cylinder>-->
         </geometry>
           <material>
             <ambient>0.0 0.0 0 1</ambient>

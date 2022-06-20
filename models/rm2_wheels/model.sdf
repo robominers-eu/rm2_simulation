@@ -71,7 +71,7 @@
 
     <!-- JOINT SIMPLE LEG 1 - ACTUATOR 1 - ABOVE -->
     <joint name="j_l1_a1" type="fixed">
-      <pose relative_to="l1::fLink">0 0 0.03825 0 0 0 </pose>
+      <pose relative_to="l1::fLink">0 0 0.03825 0 0 0</pose>
       <parent>l1::fLink</parent>
       <child>a1::aLink</child>
       <!--<axis>
@@ -284,6 +284,6 @@
       <odom_publish_frequency>1000</odom_publish_frequency>
       <topic>/cmd_vel</topic>
     </plugin>
-
+    
   </model>
 </sdf>

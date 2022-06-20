@@ -27,7 +27,7 @@
         <geometry>
           <mesh>
             <scale> 0.001 0.001 0.001</scale>
-            <uri>model://rm2_body/meshes/body_structure_blue.stl</uri>
+            <uri>model://rm2_body/meshes/body_structure_blue.dae</uri>
           </mesh>
         </geometry>
         <material>
