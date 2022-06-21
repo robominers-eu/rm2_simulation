@@ -30,12 +30,12 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name='visual'>
+      <!--<visual name='visual'>
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.009</radius> <!--Rab-->
-            <length>0.120</length> <!--Lab-->
+            <radius>0.009</radius> <!-Rab->
+            <length>0.120</length> <!-Lab->
           </cylinder>
         </geometry>
           <material>
@@ -43,7 +43,7 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
           </material>
-      </visual>
+      </visual>-->
     </link>
     
     <!-- JOINT ACTUATOR - ACTUATOR BASE -->
@@ -76,13 +76,13 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name='visual'>
+      <!--<visual name='visual'>
         <pose relative_to="j_ab_fw">0 0 0 0 0 1.5708</pose>
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.034</radius> <!--Rfw-->
-            <length>0.020</length> <!--Wfw-->
+            <radius>0.034</radius> <!-Rfw->
+            <length>0.020</length> <!-Wfw->
           </cylinder>
         </geometry>
           <material>
@@ -90,7 +90,7 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
           </material>
-      </visual>
+      </visual>-->
     </link>
     
     <!-- JOINT ACTUATOR BASE - FRONT WHEEL -->
@@ -129,12 +129,12 @@
           </cylinder>
         </geometry>
       </collision>
-      <visual name='visual'>
+      <!--<visual name='visual'>
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.034</radius><!--Rbw-->
-            <length>0.020</length><!--Wbw-->
+            <radius>0.034</radius><!-Rbw->
+            <length>0.020</length><!-Wbw->
           </cylinder>
         </geometry>
           <material>
@@ -142,7 +142,7 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
           </material>
-      </visual>
+      </visual>-->
     </link>
     
     <!-- JOINT ACTUATOR BASE - BACK WHEEL -->

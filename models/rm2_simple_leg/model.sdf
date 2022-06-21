@@ -10,6 +10,7 @@
     
     <!-- INCLUDE MOTORS-->
     <link name="mLink">
+      <!---->
       <pose relative_to="j_l_m">0 0 0 0 0 0</pose>
       <inertial>
         <mass>0.6</mass>
@@ -24,34 +25,30 @@
       </inertial>
       <collision name="collision">
         <geometry>
-          <box>
-            <size>0.166 0.038 0.0465</size> <!--Lmx Lmy Lmz-->
-          </box>
+          <!--<box>
+            <size>0.166 0.038 0.0465</size> <!-Lmx Lmy Lmz->
+          </box>-->
+          <mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2_simple_leg/meshes/motors.stl</uri>
+          </mesh>
         </geometry>
       </collision>
       <visual name="visual">
-        <transparency>0.1</transparency>
-        <!--<pose relative_to="mLink">0 0 0 0 0 0</pose>-->
+        <transparency>0.01</transparency>
         <geometry>
           <mesh>
-            <scale> 0.001 0.001 0.001</scale>
-            <uri>model://rm2_simple_leg/meshes/leg_motor.stl</uri>
+            <uri>model://rm2_simple_leg/meshes/motors.dae</uri>
           </mesh>
 		      <!--<box>
 		        <size>0.166 0.038 0.0465</size>
 		      </box>-->
         </geometry>
-          <material>
+          <!--<material>
             <ambient>0.2 0.2 0.2 1</ambient>
             <diffuse>0.2 0.2 0.2 1</diffuse>
             <specular>0.2 0.2 0.2 1</specular>
-          </material>
-        <!--<material>
-          <diffuse>0 0 0.5 0.1</diffuse>
-          <ambient>0 0 0.5 0.1</ambient>
-          <specular>0 0 0.5 0.1</specular>
-          <emissive>0 0 0.5 0.1</emissive>
-        </material>-->
+          </material>-->
       </visual>
     </link>
     
