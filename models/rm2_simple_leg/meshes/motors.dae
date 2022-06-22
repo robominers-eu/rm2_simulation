@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.93.1 commit date:2021-06-22, commit time:05:57, hash:1b8d33b18c2f</authoring_tool>
     </contributor>
-    <created>2022-06-21T17:24:27</created>
-    <modified>2022-06-21T17:24:27</modified>
+    <created>2022-06-21T19:03:39</created>
+    <modified>2022-06-21T19:03:39</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -19,7 +19,27 @@
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <color sid="diffuse">0.627451 0.627451 0.627451 1</color>
+              <color sid="diffuse">0 0 0 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">1</float>
+            </reflectivity>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Aluminum_-_Satin-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.9607843 0.9607843 0.9647059 1</color>
             </diffuse>
             <reflectivity>
               <float sid="specular">1</float>
@@ -36,6 +56,9 @@
   <library_materials>
     <material id="Steel_-_Satin-material" name="Steel - Satin">
       <instance_effect url="#Steel_-_Satin-effect"/>
+    </material>
+    <material id="Aluminum_-_Satin-material" name="Aluminum - Satin">
+      <instance_effect url="#Aluminum_-_Satin-effect"/>
     </material>
   </library_materials>
   <library_geometries>
@@ -241,7 +264,7 @@
         <vertices id="Body1_002-mesh-vertices">
           <input semantic="POSITION" source="#Body1_002-mesh-positions"/>
         </vertices>
-        <triangles material="Steel_-_Satin-material" count="118">
+        <triangles material="Aluminum_-_Satin-material" count="118">
           <input semantic="VERTEX" source="#Body1_002-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Body1_002-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Body1_002-mesh-map-0" offset="2" set="0"/>
@@ -325,7 +348,7 @@
         <vertices id="Body1-mesh-vertices">
           <input semantic="POSITION" source="#Body1-mesh-positions"/>
         </vertices>
-        <triangles material="Steel_-_Satin-material" count="118">
+        <triangles material="Aluminum_-_Satin-material" count="118">
           <input semantic="VERTEX" source="#Body1-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Body1-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Body1-mesh-map-0" offset="2" set="0"/>
@@ -336,18 +359,18 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="motor_link_v6" name="motor_link v6" type="NODE">
+      <node id="motor_link_v9" name="motor_link v9" type="NODE">
         <matrix sid="transform">0.001 0 0 0 0 0.001 0 0 0 0 0.001 0 0 0 0 1</matrix>
         <node id="Frame_3_V2_v2_1" name="Frame_3_V2 v2:1" type="NODE">
-          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -1.741 0 -4.37114e-8 1 14.981 1 4.37114e-8 1.91069e-15 -9.326 0 0 0 1</matrix>
+          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -2.367 0 -4.37114e-8 1 14.982 1 4.37114e-8 1.91069e-15 -8.862 0 0 0 1</matrix>
           <node id="Frame_3_V2_v2" name="Frame_3_V2 v2" type="NODE">
-            <matrix sid="transform">1 0 0 7.61015e-8 0 1 0 2.38419e-7 0 0 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 -8.50209e-7 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
             <node id="Body1" name="Body1" type="NODE">
-              <matrix sid="transform">10 2.84217e-14 0 7.61015e-8 -2.84217e-14 10 2.84217e-14 2.38419e-7 0 -2.84217e-14 10 0 0 0 0 1</matrix>
+              <matrix sid="transform">10 2.84217e-14 0 -8.50209e-7 -2.84217e-14 10 2.84217e-14 0 0 -2.84217e-14 10 0 0 0 0 1</matrix>
               <instance_geometry url="#Body1-mesh" name="Body1">
                 <bind_material>
                   <technique_common>
-                    <instance_material symbol="Steel_-_Satin-material" target="#Steel_-_Satin-material">
+                    <instance_material symbol="Aluminum_-_Satin-material" target="#Aluminum_-_Satin-material">
                       <bind_vertex_input semantic="Texture UVs" input_semantic="TEXCOORD" input_set="0"/>
                     </instance_material>
                   </technique_common>
@@ -357,15 +380,15 @@
           </node>
         </node>
         <node id="motor_4_1" name="motor_4:1" type="NODE">
-          <matrix sid="transform">-1 -2.46003e-14 -1.50996e-7 -54.14025 -1.50996e-7 1.62921e-7 1 -16.48863 0 1 -1.62921e-7 39.72526 0 0 0 1</matrix>
+          <matrix sid="transform">-1 -2.46003e-14 -1.50996e-7 -54.76625 -1.50996e-7 1.62921e-7 1 -16.48764 0 1 -1.62921e-7 40.18925 0 0 0 1</matrix>
           <node id="motor_4" name="motor_4" type="NODE">
-            <matrix sid="transform">1 0 0 0 0 1 -1.42109e-14 1.12836e-6 0 1.42109e-14 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 0 0 1 -1.42109e-14 1.12852e-6 0 1.42109e-14 1 0 0 0 0 1</matrix>
             <node id="DUMMY_DC12_1" name="DUMMY_DC12:1" type="NODE">
-              <matrix sid="transform">1 -1.15758e-15 0 9.500748 1.15758e-15 1 -1.42109e-14 -26.80126 0 1.42109e-14 1 16.46964 0 0 0 1</matrix>
+              <matrix sid="transform">1 -1.15758e-15 0 9.500751 1.15758e-15 1 -1.42109e-14 -26.80126 0 1.42109e-14 1 16.46964 0 0 0 1</matrix>
               <node id="DUMMY_DC12" name="DUMMY_DC12" type="NODE">
-                <matrix sid="transform">1 0 0 7.62939e-6 0 1 -1.42109e-14 -3.09478e-9 0 1.42109e-14 1 0 0 0 0 1</matrix>
+                <matrix sid="transform">1 0 0 7.62939e-6 0 1 -1.42109e-14 -2.93211e-9 0 1.42109e-14 1 -1.86265e-9 0 0 0 1</matrix>
                 <node id="Body1_001" name="Body1.001" type="NODE">
-                  <matrix sid="transform">10 0 0 7.62939e-6 0 10 0 -3.09478e-9 0 0 10 0 0 0 0 1</matrix>
+                  <matrix sid="transform">10 0 0 7.62939e-6 0 10 0 -2.93211e-9 0 0 10 -1.86265e-9 0 0 0 1</matrix>
                   <instance_geometry url="#Body1_001-mesh" name="Body1.001">
                     <bind_material>
                       <technique_common>
@@ -381,15 +404,15 @@
           </node>
         </node>
         <node id="frame_3_2_1" name="frame_3_2:1" type="NODE">
-          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -1.741 0 -4.37114e-8 1 14.981 1 4.37114e-8 1.91069e-15 -9.326 0 0 0 1</matrix>
+          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -2.367 0 -4.37114e-8 1 14.982 1 4.37114e-8 1.91069e-15 -8.862 0 0 0 1</matrix>
           <node id="frame_3_2" name="frame_3_2" type="NODE">
-            <matrix sid="transform">1 0 0 7.61015e-8 0 1 0 2.38419e-7 0 0 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 -8.50209e-7 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
             <node id="Body1_002" name="Body1.002" type="NODE">
-              <matrix sid="transform">10 2.84217e-14 0 7.61015e-8 -2.84217e-14 10 2.84217e-14 2.38419e-7 0 -2.84217e-14 10 0 0 0 0 1</matrix>
+              <matrix sid="transform">10 2.84217e-14 0 -8.50209e-7 -2.84217e-14 10 2.84217e-14 0 0 -2.84217e-14 10 0 0 0 0 1</matrix>
               <instance_geometry url="#Body1_002-mesh" name="Body1.002">
                 <bind_material>
                   <technique_common>
-                    <instance_material symbol="Steel_-_Satin-material" target="#Steel_-_Satin-material">
+                    <instance_material symbol="Aluminum_-_Satin-material" target="#Aluminum_-_Satin-material">
                       <bind_vertex_input semantic="Texture UVs" input_semantic="TEXCOORD" input_set="0"/>
                     </instance_material>
                   </technique_common>
@@ -399,11 +422,11 @@
           </node>
         </node>
         <node id="motor_1_1" name="motor_1:1" type="NODE">
-          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 1.497636 0 -4.37114e-8 1 6.971249 1 4.37114e-8 1.91069e-15 -10.25074 0 0 0 1</matrix>
+          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 0.8716364 0 -4.37114e-8 1 6.972249 1 4.37114e-8 1.91069e-15 -9.78674 0 0 0 1</matrix>
           <node id="motor_1" name="motor_1" type="NODE">
-            <matrix sid="transform">1 0 0 -6.54638e-8 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 -3.81004e-8 0 1 0 5.96046e-8 0 0 1 0 0 0 0 1</matrix>
             <node id="Body1_003" name="Body1.003" type="NODE">
-              <matrix sid="transform">10 2.84217e-14 0 -6.54638e-8 -2.84217e-14 10 2.84217e-14 0 0 -2.84217e-14 10 0 0 0 0 1</matrix>
+              <matrix sid="transform">10 2.84217e-14 0 -3.81004e-8 -2.84217e-14 10 2.84217e-14 5.96046e-8 0 -2.84217e-14 10 0 0 0 0 1</matrix>
               <instance_geometry url="#Body1_003-mesh" name="Body1.003">
                 <bind_material>
                   <technique_common>
@@ -417,11 +440,11 @@
           </node>
         </node>
         <node id="motor_2_1" name="motor_2:1" type="NODE">
-          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -9.500751 0 -4.37114e-8 1 16.46964 1 4.37114e-8 1.91069e-15 -26.80126 0 0 0 1</matrix>
+          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -10.12675 0 -4.37114e-8 1 16.47064 1 4.37114e-8 1.91069e-15 -26.33726 0 0 0 1</matrix>
           <node id="motor_2" name="motor_2" type="NODE">
-            <matrix sid="transform">1 0 0 -1.49206e-6 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 -1.46469e-6 0 1 0 0 0 0 1 1.90735e-6 0 0 0 1</matrix>
             <node id="Body1_004" name="Body1.004" type="NODE">
-              <matrix sid="transform">10 2.84217e-14 0 -1.49206e-6 -2.84217e-14 10 2.84217e-14 0 0 -2.84217e-14 10 0 0 0 0 1</matrix>
+              <matrix sid="transform">10 2.84217e-14 0 -1.46469e-6 -2.84217e-14 10 2.84217e-14 0 0 -2.84217e-14 10 1.90735e-6 0 0 0 1</matrix>
               <instance_geometry url="#Body1_004-mesh" name="Body1.004">
                 <bind_material>
                   <technique_common>
@@ -435,11 +458,11 @@
           </node>
         </node>
         <node id="motor_3_1" name="motor_3:1" type="NODE">
-          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 6.018752 0 -4.37114e-8 1 13.49236 1 4.37114e-8 1.91069e-15 -26.80126 0 0 0 1</matrix>
+          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 5.392752 0 -4.37114e-8 1 13.49336 1 4.37114e-8 1.91069e-15 -26.33726 0 0 0 1</matrix>
           <node id="motor_3" name="motor_3" type="NODE">
-            <matrix sid="transform">1 0 0 -2.17044e-6 0 1 0 4.76837e-7 0 0 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 -2.14307e-6 0 1 0 4.76837e-7 0 0 1 0 0 0 0 1</matrix>
             <node id="Body1_005" name="Body1.005" type="NODE">
-              <matrix sid="transform">10 2.84217e-14 0 -2.17044e-6 -2.84217e-14 10 2.84217e-14 4.76837e-7 0 -2.84217e-14 10 0 0 0 0 1</matrix>
+              <matrix sid="transform">10 2.84217e-14 0 -2.14307e-6 -2.84217e-14 10 2.84217e-14 4.76837e-7 0 -2.84217e-14 10 0 0 0 0 1</matrix>
               <instance_geometry url="#Body1_005-mesh" name="Body1.005">
                 <bind_material>
                   <technique_common>
@@ -453,11 +476,11 @@
           </node>
         </node>
         <node id="false_axis_1" name="false_axis:1" type="NODE">
-          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -1.741 0 -4.37114e-8 1 14.981 1 4.37114e-8 1.91069e-15 -9.326 0 0 0 1</matrix>
+          <matrix sid="transform">-4.37114e-8 1 4.37114e-8 -2.367 0 -4.37114e-8 1 14.982 1 4.37114e-8 1.91069e-15 -8.862 0 0 0 1</matrix>
           <node id="false_axis" name="false_axis" type="NODE">
-            <matrix sid="transform">1 0 0 7.61015e-8 0 1 0 2.38419e-7 0 0 1 0 0 0 0 1</matrix>
+            <matrix sid="transform">1 0 0 -8.50209e-7 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
             <node id="Body1_006" name="Body1.006" type="NODE">
-              <matrix sid="transform">10 2.84217e-14 0 7.61015e-8 -2.84217e-14 10 2.84217e-14 2.38419e-7 0 -2.84217e-14 10 0 0 0 0 1</matrix>
+              <matrix sid="transform">10 2.84217e-14 0 -8.50209e-7 -2.84217e-14 10 2.84217e-14 0 0 -2.84217e-14 10 0 0 0 0 1</matrix>
               <instance_geometry url="#Body1_006-mesh" name="Body1.006">
                 <bind_material>
                   <technique_common>

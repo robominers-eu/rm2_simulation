@@ -36,22 +36,7 @@
           <mesh>
             <uri>model://rm2_simple_actuator/meshes/screw_base.dae</uri>
           </mesh>
-          <!--<cylinder>
-            <radius>0.010</radius>
-            <length>0.050</length>
-          </cylinder>-->
         </geometry>
-          <!--<material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <specular>0.8 0.8 0.8 1</specular>
-          </material>-->
-        <!--<material>
-          <diffuse>0 0 0.5 0.1</diffuse>
-          <ambient>0 0 0.5 0.1</ambient>
-          <specular>0 0 0.5 0.1</specular>
-          <emissive>0 0 0.5 0.1</emissive>
-        </material>-->
       </visual>
     </link>
     
@@ -64,7 +49,8 @@
 
     <!-- INCLUDE CW SCREW -->
     <link name="cwaLink">
-      <pose relative_to="j_sb_cwa">0 -0.001 0.04 0 0 0</pose>
+      <!-- Posición del centro de masas del tornillo respecto a la unión con la base del actuador en su cara en el eje -->
+      <pose relative_to="j_sb_cwa">0 0 0.0406 0 0 0</pose>
       <inertial>
         <mass>0.2</mass>
         <inertia>
@@ -88,26 +74,16 @@
         <transparency>0.1</transparency>
         <geometry>
           <mesh>
-            <!--<scale> 0.001 0.001 0.001</scale>-->
             <uri>model://rm2_simple_actuator/meshes/forward_screw.dae</uri>
           </mesh>
-          <!--<cylinder>
-            <radius>0.022</radius>
-            <length>0.083</length>
-          </cylinder>-->
         </geometry>
-          <!--<material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <specular>0.8 0.8 0.8 1</specular>
-          </material>-->
       </visual>
     </link>
     
     <!-- JOINT SCREW BASE - CW SCREW -->
     <joint name="j_sb_cwa" type="revolute">
       <!-- Posición del eje del actuador en la unión con el actuador delantero respecto al centro de masas de la base del actuador -->
-      <pose relative_to="sbLink">0.010 0 0 0 1.5708 0 </pose>
+      <pose relative_to="sbLink">0.010 0 0.0025 0 1.5708 0 </pose>
       <parent>sbLink</parent>
       <child>cwaLink</child>
       <axis>
@@ -117,7 +93,8 @@
 
     <!-- INCLUDE CCW SCREW -->
     <link name="ccwaLink">
-      <pose relative_to="j_sb_ccwa">0 -0.001 0.04 0 0 0</pose>
+      <!-- Posición del centro de masas del tornillo respecto a la unión con la base del actuador en su cara en el eje -->
+      <pose relative_to="j_sb_ccwa">0 0 0.0406 0 0 0</pose>
       <inertial>
         <mass>0.2</mass>
         <inertia>
@@ -147,22 +124,14 @@
           <mesh>
             <uri>model://rm2_simple_actuator/meshes/backward_screw.dae</uri>
           </mesh>
-          <!--<cylinder>
-            <radius>0.022</radius>
-            <length>0.083</length>
-          </cylinder>->-->
         </geometry>
-          <!--<material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <specular>0.8 0.8 0.8 1</specular>
-          </material>-->
       </visual>
     </link>
     
     <!-- JOINT SCREW BASE - CCW SCREW -->
     <joint name="j_sb_ccwa" type="revolute">
-      <pose relative_to="sbLink">-0.010 0 0 0 -1.5708 0 </pose>
+      <!-- Posición del eje del actuador en la unión con el actuador trasero respecto al centro de masas de la base del actuador -->
+      <pose relative_to="sbLink">-0.010 0 0.0025 0 -1.5708 0 </pose>
       <parent>sbLink</parent>
       <child>ccwaLink</child>
       <axis>

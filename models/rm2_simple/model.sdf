@@ -126,7 +126,7 @@
 
     <!-- JOINT BODY - SIMPLE LEG 2 - LEFT -->
     <joint name="j_b_l2" type="revolute">
-      <pose relative_to="b::bLink">0.081 0.064947 -0.037515 -2.09439510239 0 0</pose>
+      <pose relative_to="b::bLink">0.081 0.064947 -0.037515 -2.0944 0 0</pose>
       <parent>b::bLink</parent>
       <child>l2::lLink</child>
       <axis>
@@ -218,7 +218,7 @@
 
     <!-- JOINT BODY - SIMPLE LEG 3 - RIGHT -->
     <joint name="j_b_l3" type="revolute">
-      <pose relative_to="b::bLink">0.081 -0.064947 -0.037515 2.09439510239 0 0</pose>
+      <pose relative_to="b::bLink">0.081 -0.064947 -0.037515 2.0944 0 0</pose>
       <parent>b::bLink</parent>
       <child>l3::lLink</child>
       <axis>
