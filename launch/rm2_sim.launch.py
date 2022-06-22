@@ -15,20 +15,21 @@ from launch_ros.actions import Node
 def generate_launch_description():
     pkg_ros_ign_gazebo = get_package_share_directory('ros_ign_gazebo')
     pkg = get_package_share_directory('rm2_simulation')
-    use_sim_time = LaunchConfiguration('use_sim_time')
+
     
     ign_gazebo = IncludeLaunchDescription(
       PythonLaunchDescriptionSource(
       os.path.join(pkg_ros_ign_gazebo, 'launch', 'ign_gazebo.launch.py')),
-      #launch_arguments={'ign_args': os.path.join(pkg, 'worlds', 'empty.sdf')}.items(),
      )
 
     spawn = Node(
                   package='ros_ign_gazebo', executable='create',
                   arguments=[
                     '-name', 'rm2_sim',
-                    '-file',  os.path.join(pkg, 'models', 'rm2_sim', 'model.sdf'),
-                    '-z', '0.5',
+                    '-file',  os.path.join(pkg, 'models', 'rm2', 'rm2_sim', 'model.sdf'),
+                    '-z', '-0.18',
+                    '-y', '-0.65',
+                    '-x', '3.73',
                     ],
                 output='screen',
                 )
@@ -56,7 +57,7 @@ def generate_launch_description():
     return LaunchDescription([
       DeclareLaunchArgument(
           'ign_args',
-          default_value=[os.path.join(pkg, 'worlds', 'empty.sdf')]),
+          default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
         ign_gazebo,
         spawn,
         bridge

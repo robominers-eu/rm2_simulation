@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<robot name="rm2_sim">
+ <!-- Links -->
+ <link name="b::bLink"/>
+ <link name="l1::lLink"/>
+ <!-- <link name="l1::mLink"/>
+ <link name="l1::fLink"/> -->
+ <link name="l2::lLink"/>
+ <!-- <link name="l2::mLink"/>
+ <link name="l2::fLink"/> -->
+ <link name="l3::lLink"/>
+ <!-- <link name="l3::mLink"/>
+ <link name="l3::fLink"/> -->
+ <!-- <link name="sa1::aLink"/>
+ <link name="sa1::sbLink"/>
+ <link name="sa1::cwaLink"/>
+ <link name="sa1::ccwaLink"/>
+ <link name="sa2::aLink"/>
+ <link name="sa2::sbLink"/>
+ <link name="sa2::cwaLink"/>
+ <link name="sa2::ccwaLink"/>
+ <link name="sa3::aLink"/>
+ <link name="sa3::sbLink"/>
+ <link name="sa3::cwaLink"/>
+ <link name="sa3::ccwaLink"/>
+ <link name="wa2::aLink"/>
+ <link name="wa2::wbLink"/>
+ <link name="wa2::fwLink"/>
+ <link name="wa2::rwLink"/>
+ <link name="wa3::aLink"/>
+ <link name="wa3::wbLink"/>
+ <link name="wa3::fwLink"/>
+ <link name="wa3::rwLink"/>
+ <link name="d_435_camera"/> -->
+   
+<!-- Body joints -->
+ <joint name="j_b_l1" type="fixed">
+        <origin rpy="0.083 0 0.075" xyz="0 0 0"/>
+        <parent link="b::bLink"/>
+        <child link="l1::lLink"/>
+</joint>
+
+ <joint name="j_b_l2" type="fixed">
+        <origin rpy="0.083 0.065 -0.0375" xyz="-2.0944 0 0"/>
+        <parent link="b::bLink"/>
+        <child link="l2::lLink"/>
+</joint>
+
+ <joint name="j_b_l3" type="fixed">
+        <origin rpy="0.083 -0.065 -0.0375" xyz="-2.0944 0 0"/>
+        <parent link="b::bLink"/>
+        <child link="l3::lLink"/>
+</joint>
+</robot>
