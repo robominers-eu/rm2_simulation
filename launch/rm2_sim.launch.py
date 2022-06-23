@@ -1,5 +1,4 @@
 import os
-import xacro
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
@@ -15,12 +14,13 @@ from launch_ros.actions import Node
 def generate_launch_description():
     pkg_ros_ign_gazebo = get_package_share_directory('ros_ign_gazebo')
     pkg = get_package_share_directory('rm2_simulation')
+    urdf_path = pkg + '/models/rm2/rm2.urdf'
 
     
     ign_gazebo = IncludeLaunchDescription(
       PythonLaunchDescriptionSource(
       os.path.join(pkg_ros_ign_gazebo, 'launch', 'ign_gazebo.launch.py')),
-     )
+    )
 
     spawn = Node(
                   package='ros_ign_gazebo', executable='create',
@@ -53,6 +53,23 @@ def generate_launch_description():
             ('/cmd_vel', 'cmd_vel'),
         ],
         output='screen')
+
+
+    state_publisher = Node(package='robot_state_publisher', executable='robot_state_publisher',
+				output='screen',
+				parameters = [
+					{'ignore_timestamp': False},
+					{'use_tf_static': True},
+					{'robot_description': open(urdf_path).read()}],
+				arguments = [urdf_path])
+
+    rviz_config_file = LaunchConfiguration('rviz_config',
+						default=os.path.join(pkg, 'rviz', 'urdf_config.rviz'))
+
+    rviz2 = Node(package='rviz2', executable='rviz2',
+					name='rviz2',
+					arguments=['-d', rviz_config_file],
+					output='screen',)
     
     return LaunchDescription([
       DeclareLaunchArgument(
@@ -60,6 +77,8 @@ def generate_launch_description():
           default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
         ign_gazebo,
         spawn,
-        bridge
+        bridge,
+        # state_publisher,
+        # rviz2
     ])
 

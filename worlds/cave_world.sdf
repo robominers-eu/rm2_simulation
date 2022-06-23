@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <world name="cave_world">
+    <scene>
+      <grid>false</grid>
+      <ambient>1.0 1.0 1.0</ambient>
+      <background>0.8 0.8 0.8</background>
+    </scene>
 
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
@@ -65,5 +70,4 @@
       <direction>0 0 0</direction>
     </light>
   </world>
-
 </sdf>

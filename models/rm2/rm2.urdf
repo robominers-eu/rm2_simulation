@@ -1,54 +1,230 @@
 <?xml version="1.0" ?>
 <robot name="rm2_sim">
- <!-- Links -->
- <link name="b::bLink"/>
- <link name="l1::lLink"/>
- <!-- <link name="l1::mLink"/>
- <link name="l1::fLink"/> -->
- <link name="l2::lLink"/>
- <!-- <link name="l2::mLink"/>
- <link name="l2::fLink"/> -->
- <link name="l3::lLink"/>
- <!-- <link name="l3::mLink"/>
- <link name="l3::fLink"/> -->
- <!-- <link name="sa1::aLink"/>
- <link name="sa1::sbLink"/>
- <link name="sa1::cwaLink"/>
- <link name="sa1::ccwaLink"/>
- <link name="sa2::aLink"/>
- <link name="sa2::sbLink"/>
- <link name="sa2::cwaLink"/>
- <link name="sa2::ccwaLink"/>
- <link name="sa3::aLink"/>
- <link name="sa3::sbLink"/>
- <link name="sa3::cwaLink"/>
- <link name="sa3::ccwaLink"/>
- <link name="wa2::aLink"/>
- <link name="wa2::wbLink"/>
- <link name="wa2::fwLink"/>
- <link name="wa2::rwLink"/>
- <link name="wa3::aLink"/>
- <link name="wa3::wbLink"/>
- <link name="wa3::fwLink"/>
- <link name="wa3::rwLink"/>
- <link name="d_435_camera"/> -->
-   
-<!-- Body joints -->
- <joint name="j_b_l1" type="fixed">
-        <origin rpy="0.083 0 0.075" xyz="0 0 0"/>
-        <parent link="b::bLink"/>
-        <child link="l1::lLink"/>
-</joint>
+        <!-- Links -->
+        <link name="base_link"/>
+        <link name="l1::lLink"/>
+        <link name="l1::mLink"/>
+        <link name="l1::fLink"/>
+        <link name="l2::lLink"/>
+        <link name="l2::mLink"/>
+        <link name="l2::fLink"/>
+        <link name="l3::lLink"/>
+        <link name="l3::mLink"/>
+        <link name="l3::fLink"/>
+        <link name="sa1::aLink"/>
+        <link name="sa1::sbLink"/>
+        <link name="sa1::cwaLink"/>
+        <link name="sa1::ccwaLink"/>
+        <link name="sa2::aLink"/>
+        <link name="sa2::sbLink"/>
+        <link name="sa2::cwaLink"/>
+        <link name="sa2::ccwaLink"/>
+        <link name="sa3::aLink"/>
+        <link name="sa3::sbLink"/>
+        <link name="sa3::cwaLink"/>
+        <link name="sa3::ccwaLink"/>
+        <link name="wa2::aLink"/>
+        <link name="wa2::wbLink"/>
+        <link name="wa2::fwLink"/>
+        <link name="wa2::rwLink"/>
+        <link name="wa3::aLink"/>
+        <link name="wa3::wbLink"/>
+        <link name="wa3::fwLink"/>
+        <link name="wa3::rwLink"/>
+        <link name="d_435_camera"/>
 
- <joint name="j_b_l2" type="fixed">
-        <origin rpy="0.083 0.065 -0.0375" xyz="-2.0944 0 0"/>
-        <parent link="b::bLink"/>
-        <child link="l2::lLink"/>
-</joint>
+        <!-- Body joints -->
+        <joint name="j_b_l1" type="fixed">
+                <origin rpy="0 0 0" xyz="0.0035 0.024 0.0473"/>
+                <parent link="base_link"/>
+                <child link="l1::lLink"/>
+        </joint>
 
- <joint name="j_b_l3" type="fixed">
-        <origin rpy="0.083 -0.065 -0.0375" xyz="-2.0944 0 0"/>
-        <parent link="b::bLink"/>
-        <child link="l3::lLink"/>
-</joint>
+        <joint name="j_b_l2" type="fixed">
+                <origin rpy="-2.0944 0 0" xyz="0.083 0.065 -0.0375"/>
+                <parent link="base_link"/>
+                <child link="l2::lLink"/>
+        </joint>
+
+        <joint name="j_b_l3" type="fixed">
+                <origin rpy="2.0944 0 0" xyz="0.083 -0.065 -0.0375"/>
+                <parent link="base_link"/>
+                <child link="l3::lLink"/>
+        </joint>
+
+        <joint name="j_l1_sa1" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l1::fLink" />
+                <child link = "sa1::aLink" />
+        </joint>
+
+        <joint name="j_l2_sa2" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l2::fLink" />
+                <child link = "sa2::aLink" />
+        </joint>
+
+        <joint name="j_l2_wa2" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l2::fLink" />
+                <child link = "wa2::aLink" />
+        </joint>
+
+        <joint name="j_l3_sa3" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l3::fLink" />
+                <child link = "sa3::aLink" />
+        </joint>
+
+        <joint name="j_l3_wa3" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.0035 0.024 0.0473"/>
+                <parent link = "l3::fLink" />
+                <child link = "wa3::aLink" />
+        </joint>
+
+        <joint name="j_rgbd_b" type="fixed">
+                <origin rpy = "0 0 0" xyz = "0.090 0 0.038911"/>
+                <parent link = "base_link" />
+                <child link = "d_435_camera" />
+        </joint>
+
+        <!-- TODO Change poses relatives -->
+        <joint name="l1::j_l_m" type="fixed">
+                <pose relative_to="lLink">0 0 0 0 0 0</pose>
+                <parent link = "l1::lLink" />
+                <child link = "l1::mLink" />
+
+        </joint>
+
+        <joint name="l1::j_m_f" type="fixed">
+                <pose relative_to="mLink">0.0153 0.019 0.0135 0 0 0</pose>
+                <parent link = "l1::mLink" />
+                <child link = "l1::fLink" />
+        </joint>
+
+        <joint name="l2::j_l_m" type="fixed">
+                <pose relative_to="lLink">0 0 0 0 0 0</pose>
+                <parent link = "l2::lLink" />
+                <child link = "l2::mLink" />
+        </joint>
+
+        <joint name="l2::j_m_f" type="fixed">
+                <pose relative_to="mLink">0.0153 0.019 0.0135 0 0 0</pose>
+                <parent link = "l2::mLink" />
+                <child link = "l2::fLink" />
+        </joint>
+
+        <joint name="l3::j_l_m" type="fixed">
+                <pose relative_to="lLink">0 0 0 0 0 0</pose>
+                <parent link = "l3::lLink" />
+                <child link = "l3::mLink" />
+
+        </joint>
+        <joint name="l3::j_m_f" type="fixed">
+                <pose relative_to="mLink">0.0153 0.019 0.0135 0 0 0</pose>
+                <parent link = "l3::mLink" />
+                <child link = "l3::fLink" />
+        </joint>
+
+        <joint name="sa1::j_a_sb" type="fixed">
+                <pose relative_to="aLink">0 0 0 0 0 0</pose>
+                <parent link = "sa1::aLink" />
+                <child link = "sa1::sbLink" />
+        </joint>
+
+        <joint name="sa1::j_sb_cwa" type="continuous">
+                <pose relative_to="sbLink">0.010 0 0.0025 0 1.5708 0 </pose>
+                <parent link = "sa1::sbLink" />
+                <child link = "sa1::cwaLink" />
+                <axis xyz="0 0 1" />
+
+        </joint>
+
+        <joint name="sa1::j_sb_ccwa" type="continuous">
+                <pose relative_to="sbLink">-0.010 0 0.0025 0 -1.5708 0 </pose>
+                <parent link = "sa1::sbLink" />
+                <child link = "sa1::ccwaLink" />
+                <axis xyz="0 0 1" />
+        </joint>
+
+        <joint name="sa2::j_a_sb" type="fixed">
+                <pose relative_to="aLink">0 0 0 0 0 0</pose>
+                <parent link = "sa2::aLink" />
+                <child link = "sa2::sbLink" />
+        </joint>
+
+        <joint name="sa2::j_sb_cwa" type="continuous">
+                <pose relative_to="sbLink">0.010 0 0.0025 0 1.5708 0 </pose>
+                <parent link = "sa2::sbLink" />
+                <child link = "sa2::cwaLink" />
+                <axis xyz="0 0 1" />
+
+        </joint>
+
+        <joint name="sa2::j_sb_ccwa" type="continuous">
+                <pose relative_to="sbLink">-0.010 0 0.0025 0 -1.5708 0 </pose>
+                <parent link = "sa2::sbLink" />
+                <child link = "sa2::ccwaLink" />
+                <axis xyz="0 0 1" />
+        </joint>
+
+        <joint name="sa3::j_a_sb" type="fixed">
+                <pose relative_to="aLink">0 0 0 0 0 0</pose>
+                <parent link = "sa3::aLink" />
+                <child link = "sa3::sbLink" />
+        </joint>
+
+        <joint name="sa3::j_sb_cwa" type="continuous">
+                <pose relative_to="sbLink">0.010 0 0.0025 0 1.5708 0 </pose>
+                <parent link = "sa3::sbLink" />
+                <child link = "sa3::cwaLink" />
+                <axis xyz="0 0 1" />
+
+        </joint>
+
+        <joint name="sa3::j_sb_ccwa" type="continuous">
+                <pose relative_to="sbLink">-0.010 0 0.0025 0 -1.5708 0 </pose>
+                <parent link = "sa3::sbLink" />
+                <child link = "sa3::ccwaLink" />
+                <axis xyz="0 0 1" />
+        </joint>
+
+        <joint name="wa2::j_a_wb" type="fixed">
+                <pose relative_to="aLink">0 0 0.0025 0 1.5708 0</pose>
+                <parent link = "wa2::aLink" />
+                <child link = "wa2::wbLink" />
+        </joint>
+
+        <joint name="wa2::j_wb_fw" type="continuous">
+                <parent link = "wa2::wbLink" />
+                <child link = "wa2::fwLink" />
+               <axis xyz="0 0 1" />
+        </joint>
+
+        <joint name="wa2::j_wb_rw" type="continuous">
+                <pose relative_to="wbLink">0.009 0 -0.07425 1.5708 0 0</pose>
+                <parent link = "wa2::wbLink" />
+                <child link = "wa2::rwLink" />
+               <axis xyz="0 0 1" />
+        </joint>
+
+        <joint name="wa3::j_a_wb" type="fixed">
+                <pose relative_to="aLink">0 0 0.0025 0 1.5708 0</pose>
+                <parent link = "wa3::aLink" />
+                <child link = "wa3::wbLink" />
+        </joint>
+
+        <joint name="wa3::j_wb_fw" type="continuous">
+                <pose relative_to="wbLink">0.009 0 0.07425 1.5708 0 0</pose>
+                <parent link = "wa3::wbLink" />
+                <child link = "wa3::fwLink" />
+               <axis xyz="0 0 1" />
+        </joint>
+
+        <joint name="wa3::j_wb_rw" type="continuous">
+                <pose relative_to="wbLink">0.009 0 -0.07425 1.5708 0 0</pose>
+                <parent link = "wa3::wbLink" />
+                <child link = "wa3::rwLink" />
+               <axis xyz="0 0 1" />
+        </joint>
 </robot>
