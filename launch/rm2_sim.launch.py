@@ -34,27 +34,6 @@ def generate_launch_description():
                 output='screen',
                 )
     
-    bridge = Node(
-      package='ros_ign_bridge',
-      executable='parameter_bridge',
-      arguments=[
-      # Mappings (IGN -> ROS2)
-      # The ROS message type is followed by an @, [, or ] symbol where:
-
-      # @ is a bidirectional bridge.
-      # [ is a bridge from Ignition to ROS.
-      # ] is a bridge from ROS to Ignition.
-      # https://github.com/ignitionrobotics/ros_ign/tree/ros2/ros_ign_bridge
-
-      '/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist',                    
-             
-                ],
-      remappings=[
-            ('/cmd_vel', 'cmd_vel'),
-        ],
-        output='screen')
-
-
     state_publisher = Node(package='robot_state_publisher', executable='robot_state_publisher',
 				output='screen',
 				parameters = [
@@ -63,13 +42,12 @@ def generate_launch_description():
 					{'robot_description': open(urdf_path).read()}],
 				arguments = [urdf_path])
 
-    rviz_config_file = LaunchConfiguration('rviz_config',
-						default=os.path.join(pkg, 'rviz', 'urdf_config.rviz'))
 
-    rviz2 = Node(package='rviz2', executable='rviz2',
-					name='rviz2',
-					arguments=['-d', rviz_config_file],
-					output='screen',)
+    ign_bridge = IncludeLaunchDescription(
+		PythonLaunchDescriptionSource(
+		    os.path.join(pkg, 'launch', 'bridge.launch.py'),),
+        )
+    
     
     return LaunchDescription([
       DeclareLaunchArgument(
@@ -77,8 +55,7 @@ def generate_launch_description():
           default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
         ign_gazebo,
         spawn,
-        bridge,
-        # state_publisher,
-        # rviz2
+        ign_bridge,
+        state_publisher,
     ])
 

@@ -1,13 +1,46 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <model name="rm2_sim">
+    <!-- INCLUDE BODY NOT USING INCLUDE FOR URDF-->
+    <link name='base_link'>
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>        <!-- Se usarán tolerancias de +-1g -->
+        <mass>1.114</mass>
+        <inertia>          <!-- Se usarán tolerancias de +-0.01kg/mm2 -->
+          <ixx>0.00773</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00937</iyy>
+          <iyz>0</iyz>
+          <izz>0.00938</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2/rm2_body/meshes/body_collision.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <transparency>0</transparency>
+        <geometry>
+          <mesh>            <!--<scale> 0.001 0.001 0.001</scale>-->
+            <uri>model://rm2/rm2_body/meshes/body_structure_blue.dae</uri>
+          </mesh>
+        </geometry>
 
-    <!-- INCLUDE BODY -->
-    <include>
+        <!--<material><ambient>0.0 0.0 0.9 1</ambient><diffuse>0.0 0.0 0.9 1</diffuse><specular>0.0 0.0 0.9 1</specular></material>-->
+      </visual>
+    </link>
+
+
+    <!-- <include>
       <pose>0 0 0 0 0 0</pose>
       <uri>model://rm2/rm2_body</uri>
       <name>b</name>
-    </include>
+    </include> -->
 
     <!-- INCLUDE SIMPLE LEG 1 - ABOVE -->
     <include>
@@ -21,8 +54,8 @@
     <!-- JOINT BODY - SIMPLE LEG 1 - ABOVE -->
     <joint name="j_b_l1" type="fixed">
       <!-- Posición del acople del motor positivo en el eje x respecto al centro de masas del cuerpo -->
-      <pose relative_to="b::bLink">0.083 0 0.075 0 0 0</pose>
-      <parent>b::bLink</parent>
+      <pose relative_to="base_link">0.083 0 0.075 0 0 0</pose>
+      <parent>base_link</parent>
       <child>l1::lLink</child>
     </joint>
 
@@ -68,8 +101,8 @@
     <!-- JOINT BODY - SIMPLE LEG 2 - LEFT -->
     <joint name="j_b_l2" type="fixed">
       <!-- Posición del acople del motor positivo en el eje x respecto al centro de masas del cuerpo -->
-      <pose relative_to="b::bLink">0.083 0.065 -0.0375 -2.0944 0 0</pose>
-      <parent>b::bLink</parent>
+      <pose relative_to="base_link">0.083 0.065 -0.0375 -2.0944 0 0</pose>
+      <parent>base_link</parent>
       <child>l2::lLink</child>
     </joint>
 
@@ -131,8 +164,8 @@
     <!-- JOINT BODY - SIMPLE LEG 3 - RIGHT -->
     <joint name="j_b_l3" type="fixed">
       <!-- Posición del acople del motor positivo en el eje x respecto al centro de masas del cuerpo -->
-      <pose relative_to="b::bLink">0.083 -0.065 -0.0375 2.0944 0 0</pose>
-      <parent>b::bLink</parent>
+      <pose relative_to="base_link">0.083 -0.065 -0.0375 2.0944 0 0</pose>
+      <parent>base_link</parent>
       <child>l3::lLink</child>
     </joint>
 
@@ -171,7 +204,7 @@
     <!-- INCLUDE CAMERA -->
     <link name = "d_435_camera">
       <collision name="d435_camera_collision">
-         <pose relative_to="b::bLink">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
         <geometry>
           <box>
             <size>0.02505 0.09 0.025</size>
@@ -194,7 +227,7 @@
       </collision>
 
       <visual name="d435_camera_visual">
-         <pose relative_to="b::bLink">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -207,7 +240,7 @@
         <always_on>1</always_on>
         <update_rate>30</update_rate>
         <visualize>1</visualize>
-        <pose relative_to="b::bLink">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
         <topic>/model/rm2_sim/rgbd_camera</topic>
         <camera name="d435">
           <horizontal_fov>1.21126</horizontal_fov>
@@ -233,7 +266,7 @@
         <update_rate>90</update_rate>
         <visualize>0</visualize>
         <topic>/model/rm2_sim/depth_camera</topic>
-        <pose relative_to="b::bLink">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
         <camera name="d435">
           <horizontal_fov>1.48702</horizontal_fov>
           <image>
@@ -253,12 +286,59 @@
       </sensor>
     </link>
 
+    <!-- Include lidar for mapping -->
+    <link name = "lidar">
+      <collision name="lidar_collision">
+        <pose relative_to="base_link">0 0 0.25 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02505 0.09 0.025</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <sensor name="front_lidar" type="gpu_lidar">
+        <pose>0.278738 3e-06 0.044475 0 -0 0</pose>
+        <topic>/model/rm2_sim/laserscan</topic>
+        <visualize>0</visualize>
+        <update_rate>10</update_rate>
+        <always_on>1</always_on>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1</resolution>
+              <min_angle>-1.8326</min_angle>
+              <max_angle>1.8326</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.05</min>
+            <max>20</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+      </sensor>
+    </link>
     <!-- Joint camera - body -->
     <joint name="j_rgbd_b" type="fixed">
-      <pose relative_to="b::bLink">0.090 0 0.038911 0 0 0</pose>
-      <parent> b::bLink</parent>
+      <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
+      <parent> base_link</parent>
       <child>d_435_camera</child>
     </joint>
+
+    <!-- Joint lidar - body -->
+    <joint name="j_lidar_b" type="fixed">
+      <pose relative_to="base_link">0.0 0 0.25 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>lidar</child>
+    </joint>
+
     <!-- For cameras and lidars, use sensors plugin, only add once -->
     <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
       <render_engine>ogre2</render_engine>
@@ -289,51 +369,12 @@
       <wheel_radius>0.030</wheel_radius>
       <odom_publish_frequency>1000</odom_publish_frequency>
       <topic>/cmd_vel</topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_link</child_frame_id>
     </plugin>
 
-
-    <!-- <visual name="lidar">
-      <pose relative_to="body">0.090 0 0.0467 0 0 0</pose>
-      <geometry>
-        <mesh>
-          <scale>0.001 0.001 0.001</scale>
-          <uri>model://rm2/sensors/meshes/lidar.stl</uri>
-        </mesh>
-      </geometry>
-    </visual> -->
-
-    <!-- <sensor name="front_lidar" type="gpu_lidar">
-      <pose relative_to="body">0.090 0 0.0467 0 0 0</pose>
-      <topic>/model/igt_one/laserscan</topic>
-      <visualize>0</visualize>
-      <update_rate>10</update_rate>
-      <always_on>1</always_on>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>720</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.8326</min_angle>
-            <max_angle>1.8326</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.05</min>
-          <max>20</max>
-          <resolution>0.01</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>
-          <mean>0</mean>
-          <stddev>0.01</stddev>
-        </noise>
-      </ray>
-      <plugin name='gazebo_ros_head_hokuyo_controller' filename='libgazebo_ros_laser.so'>
-        <frameName>lidar</frameName>
-      </plugin>
-    </sensor> -->
-
-
+    <!-- joint state publisher plugin -->
+    <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher"/>
 
   </model>
 </sdf>
