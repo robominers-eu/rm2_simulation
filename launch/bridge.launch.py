@@ -113,7 +113,7 @@ def generate_launch_description():
         remappings=[('cloud_in', '/depth_camera/points'),
                     ('scan', '/scan')],
         parameters=[{
-            'target_frame': 'rm2/base_link/d_435_camera/d435_depth',
+            'target_frame': 'rm2_sim/d_435_camera/d435_depth',
             'transform_tolerance': 0.01,
             'min_height': 0.0,
             'max_height': 1.0,
@@ -182,7 +182,7 @@ def generate_launch_description():
                       arguments=[
                           '0', '0', '0', '0', '0', '0', '1',
                               'd_435_camera',
-                              'rm2/d_435_camera/d435_depth'
+                              'rm2_sim/d_435_camera/d435_depth'
                       ])
 
     return LaunchDescription([
@@ -195,9 +195,8 @@ def generate_launch_description():
         color_camera_bridge,
         depth_camera_bridge,
         odom_base_tf_bridge,
-        camera_stf,
+        # camera_stf,
         # pcl2laser_cmd,
-
         lidar_bridge,
         lidar_stf
     ])

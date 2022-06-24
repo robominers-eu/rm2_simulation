@@ -1,23 +1,11 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <world name="cave_world">
-<<<<<<< HEAD
-    
-    <!-- <gravity>0 0 -9.8</gravity>
-    <static>false</static>
-    <physics name="1ms" type="ode">
-      <max_step_size>0.001</max_step_size>
-      <real_time_factor>1.0</real_time_factor>
-    </physics> -->
-    
-=======
     <scene>
       <grid>false</grid>
       <ambient>1.0 1.0 1.0</ambient>
       <background>0.8 0.8 0.8</background>
     </scene>
-
->>>>>>> devel
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
@@ -29,11 +17,7 @@
 
 
     <!-- FLOOR -->
-<<<<<<< HEAD
     <model name="ground_plane">
-=======
-    <model name="ground">
->>>>>>> devel
       <static>true</static>
       <pose>0 0 -0.37 0 0 0</pose>
       <link name="link">
@@ -58,10 +42,6 @@
           </material>
         </visual>  -->
       </link>
-<<<<<<< HEAD
-      
-=======
->>>>>>> devel
     </model>
 
 
@@ -88,9 +68,5 @@
       </attenuation>
       <direction>0 0 0</direction>
     </light>
-<<<<<<< HEAD
-
-=======
->>>>>>> devel
   </world>
 </sdf>
