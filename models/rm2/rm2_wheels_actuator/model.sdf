@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="wheelsActuator">
+
+    <!-- INCLUDE ACTUATOR LINK -->
+    <!-- Así hay un link actuator genérico que no depende de lo que haya después -->
+    <link name="aLink">
+      <pose>0 0 0 0 0 0</pose>
+    </link>
+
+    <!-- INCLUDE WHEELS BAR -->
+    <link name="wbLink">
+      <pose relative_to="j_a_wb">0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.064</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.064</iyy>
+          <iyz>0</iyz>
+          <izz>0.00024</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius> <!--Rab-->
+            <length>0.155</length> <!--Lab-->
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <transparency>0.1</transparency>
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius> <!--Rab-->
+            <length>0.155</length> <!--Lab-->
+          </cylinder>
+        </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+      </visual>
+    </link>
+    
+    <!-- JOINT ACTUATOR - WHEELS BAR -->
+    <joint name="j_a_wb" type="fixed">
+      <pose relative_to="aLink">0 0 0.0025 0 1.5708 0</pose>
+      <parent>aLink</parent>
+      <child>wbLink</child>
+    </joint>
+    
+    <!-- INCLUDE FRONT WHEEL -->
+    <link name="fwLink">
+      <pose relative_to="j_wb_fw">0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.064</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.064</iyy>
+          <iyz>0</iyz>
+          <izz>0.00024</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.028</radius> <!-- Rw -->
+            <length>0.08</length> <!-- Lw -->
+          </cylinder>
+        </geometry>
+      </collision>
+      <!-- <visual name='visual'>
+        <transparency>0.1</transparency>
+        <geometry>
+          <cylinder>
+            <radius>0.028</radius>
+            <length>0.020</length> 
+          </cylinder>
+        </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+      </visual> -->
+    </link>
+    
+    <!-- JOINT WHEELS BAR - FRONT WHEEL -->
+    <joint name="j_wb_fw" type="revolute">
+      <!--La unión de la base del actuador y la rueda delantera está a la mitad de la longitud de la base del actuador desde su centro de masas en el eje abZ con sentido positivo: Lab/2=0.12/2=0.06
+      Además, hay que orientar el eje local de la rueda delantera, fwZ, con el eje local de la base del actuador y, abY, para que quede saliente, girando 90º desde el eje x: roll=pi/2=1.5708-->
+      <pose relative_to="wbLink">0.009 0 0.07425 1.5708 0 0</pose>
+      <parent>wbLink</parent>
+      <child>fwLink</child>
+      <axis>
+        <!--El eje de giro de la rueda está en el eje fwZ en sentido positivo-->
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    
+        <!-- INCLUDE REAR WHEEL -->
+    <link name="rwLink">
+      <pose relative_to="j_wb_rw">0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.064</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.064</iyy>
+          <iyz>0</iyz>
+          <izz>0.00024</izz>
+        </inertia>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <cylinder>
+            <radius>0.030</radius> <!-- Rw -->
+            <length>0.08</length> <!-- Lw -->
+          </cylinder>
+        </geometry>
+      </collision>
+      <!-- <visual name='visual'>
+        <transparency>0.1</transparency>
+        <geometry>
+          <cylinder>
+            <radius>0.030</radius> 
+            <length>0.020</length> 
+          </cylinder>
+        </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+      </visual> -->
+    </link>
+    
+    <!-- JOINT WHEELS BAR - REAR WHEEL -->
+    <joint name="j_wb_rw" type="revolute">
+      <!--La unión de la base del actuador y la rueda delantera está a la mitad de la longitud de la base del actuador
+        desde su centro de masas en el eje abZ con sentido positivo: Lab/2=0.155/2=0.07525
+      Además, hay que orientar el eje local de la rueda delantera, rwZ, con el eje local de la base del actuador y,
+       abY, para que quede saliente, girando 90º desde el eje x: roll=pi/2=1.5708-->
+      <pose relative_to="wbLink">0.009 0 -0.07425 1.5708 0 0</pose>
+      <parent>wbLink</parent>
+      <child>rwLink</child>
+      <axis>
+        <!--El eje de giro de la rueda está en el eje rwZ en sentido positivo-->
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    
+  </model>
+</sdf>

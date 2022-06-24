@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="simpleLeg">
+    
+    <!-- LEG LINK -->
+    <!-- Así hay un link leg genérico que no depende de lo que haya después -->
+    <link name="lLink">
+      <pose>0 0 0 0 0 0</pose>
+    </link>
+    
+    <!-- INCLUDE MOTORS-->
+    <link name="mLink">
+      <!---->
+      <pose relative_to="j_l_m">0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.393</mass>
+        <inertia>
+          <ixx>0.00012</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00096</iyy>
+          <iyz>0</iyz>
+          <izz>0.00094</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <scale> 0.001 0.001 0.001</scale>
+            <uri>model://rm2/rm2_simple_leg/meshes/motors.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <transparency>0.01</transparency>
+        <geometry>
+          <mesh>
+            <uri>model://rm2/rm2_simple_leg/meshes/motors.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    
+    <!-- JOINT LEG - MOTORS -->
+    <joint name="j_l_m" type="fixed">
+      <pose relative_to="lLink">0 0 0 0 0 0</pose>
+      <parent>lLink</parent>
+      <child>mLink</child>
+    </joint>
+    
+    <!-- INCLUDE FRAMES -->
+    <link name="fLink">
+      <!-- Posición del centro de masas de frames respecto al eje de unión con motors negativo en x e y -->
+      <pose relative_to="j_m_f">-0.0162 -0.019 0.0447 0 0 0</pose>
+      <inertial>
+        <mass>0.044</mass>
+        <inertia>
+          <ixx>0.00007</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00012</iyy>
+          <iyz>0</iyz>
+          <izz>0.00009</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.13 0.047 0.096</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <transparency>0.01</transparency>
+        <geometry>
+          <mesh>
+            <uri>model://rm2/rm2_simple_leg/meshes/frames.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <!-- JOINT MOTORS - FRAMES -->
+    <joint name="j_m_f" type="fixed">
+       <!-- Posicón del eje de unión con frames negativo en x e y respecto al centro de masas de motors  -->
+      <pose relative_to="mLink">0.0153 0.019 0.0135 0 0 0</pose>
+      <parent>mLink</parent>
+      <child>fLink</child>
+    </joint>
+    
+    <!-- INCLUDE SIMPLE FRAMES -->
+    <!--<link name="sfLink">-->
+      <!-- Posición del centro de masas de frames respecto al eje de unión con motors negativo en x e y -->
+      <!--<pose relative_to="j_m_f">-0.0162 -0.019 0.0447 0 0 0</pose>      
+      <visual name="visual">
+        <transparency>0.1</transparency>
+        <geometry>
+          <box>
+            <size>0.13 0.047 0.096</size>
+          </box>
+        </geometry>
+          <material>
+            <ambient>0.0 0.0 0 1</ambient>
+            <diffuse>0.0 0.0 0 1</diffuse>
+            <specular>0.0 0.0 0 1</specular>
+          </material>
+      </visual>
+    </link>-->
+  </model>
+</sdf>

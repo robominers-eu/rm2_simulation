@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <world name="cave_world">
+<<<<<<< HEAD
     
     <!-- <gravity>0 0 -9.8</gravity>
     <static>false</static>
@@ -9,6 +10,14 @@
       <real_time_factor>1.0</real_time_factor>
     </physics> -->
     
+=======
+    <scene>
+      <grid>false</grid>
+      <ambient>1.0 1.0 1.0</ambient>
+      <background>0.8 0.8 0.8</background>
+    </scene>
+
+>>>>>>> devel
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
@@ -20,9 +29,13 @@
 
 
     <!-- FLOOR -->
+<<<<<<< HEAD
     <model name="ground_plane">
+=======
+    <model name="ground">
+>>>>>>> devel
       <static>true</static>
-      <pose>0 0 -0.115015 0 0 0</pose>
+      <pose>0 0 -0.37 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -31,7 +44,7 @@
             </plane>
           </geometry>
         </collision>
-        <visual name="visual">
+        <!-- <visual name="visual">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
@@ -43,36 +56,41 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
           </material>
-        </visual>
-
+        </visual>  -->
       </link>
+<<<<<<< HEAD
       
+=======
+>>>>>>> devel
     </model>
 
 
     <model name="cave">
       <include>
-        <pose>5.35 5.35 0 0 0 0</pose>
+        <pose>33.0 0 -0.5 0 0 -1.4</pose>
         <uri>model://cave</uri>
         <name>cave</name>
       </include>
     </model>
 
 
-    <!-- SUN -->
-    <light type="directional" name="sun">
-      <cast_shadows>true</cast_shadows>
-      <pose>0 0 10 0 0 0</pose>
+    <!-- Add light inside mine -->
+    <light type="directional" name="light">
+      <cast_shadows>false</cast_shadows>
+      <pose>3.75 -0.65 0 3.14 0 0</pose>
       <diffuse>0.8 0.8 0.8 1</diffuse>
       <specular>0.2 0.2 0.2 1</specular>
       <attenuation>
-        <range>1000</range>
+        <range>0</range>
         <constant>0.9</constant>
         <linear>0.01</linear>
         <quadratic>0.001</quadratic>
       </attenuation>
-      <direction>-0.5 0.1 -0.9</direction>
+      <direction>0 0 0</direction>
     </light>
+<<<<<<< HEAD
 
+=======
+>>>>>>> devel
   </world>
 </sdf>
