@@ -298,7 +298,7 @@
       </collision>
 
       <sensor name="front_lidar" type="gpu_lidar">
-        <pose>0.278738 3e-06 0.044475 0 -0 0</pose>
+        <pose relative_to="base_link">0.0 0 0.25 0 -0 0</pose>
         <topic>/model/rm2_sim/laserscan</topic>
         <visualize>0</visualize>
         <update_rate>10</update_rate>

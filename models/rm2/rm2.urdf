@@ -13,30 +13,30 @@
         <link name="l3::fLink"/>
         <link name="sa1::aLink"/>
         <link name="sa1::sbLink"/>
-        <!-- <link name="sa1::cwaLink"/>
-        <link name="sa1::ccwaLink"/> -->
+        <link name="sa1::cwaLink"/>
+        <link name="sa1::ccwaLink"/>
         <link name="sa2::aLink"/>
         <link name="sa2::sbLink"/>
-        <!-- <link name="sa2::cwaLink"/>
-        <link name="sa2::ccwaLink"/> -->
+        <link name="sa2::cwaLink"/>
+        <link name="sa2::ccwaLink"/>
         <link name="sa3::aLink"/>
         <link name="sa3::sbLink"/>
-        <!-- <link name="sa3::cwaLink"/>
-        <link name="sa3::ccwaLink"/> -->
+        <link name="sa3::cwaLink"/>
+        <link name="sa3::ccwaLink"/>
         <link name="wa2::aLink"/>
         <link name="wa2::wbLink"/>
-        <!-- <link name="wa2::fwLink"/>
-        <link name="wa2::rwLink"/> -->
+        <link name="wa2::fwLink"/>
+        <link name="wa2::rwLink"/>
         <link name="wa3::aLink"/>
         <link name="wa3::wbLink"/>
-        <!-- <link name="wa3::fwLink"/>
-        <link name="wa3::rwLink"/> -->
+        <link name="wa3::fwLink"/>
+        <link name="wa3::rwLink"/> 
         <link name="d_435_camera"/>
         <link name="lidar"/>
 
         <!-- Body joints -->
         <joint name="j_b_l1" type="fixed">
-                <origin rpy="0 0 0" xyz="0.0035 0.024 0.0473"/>
+                <origin rpy="0 0 0" xyz="0.083 0 0.075"/>
                 <parent link="base_link"/>
                 <child link="l1::lLink"/>
         </joint>
@@ -137,7 +137,7 @@
                 <parent link = "sa1::aLink" />
                 <child link = "sa1::sbLink" />
         </joint>
-<!-- 
+
         <joint name="sa1::j_sb_cwa" type="continuous">
                 <origin rpy = "0 1.5708 0" xyz = "0.010 0 0.0025"/>
                 <parent link = "sa1::sbLink" />
@@ -151,14 +151,14 @@
                 <parent link = "sa1::sbLink" />
                 <child link = "sa1::ccwaLink" />
                 <axis xyz="0 0 1" />
-        </joint> -->
+        </joint>
 
         <joint name="sa2::j_a_sb" type="fixed">
                 <origin rpy = "0 0 0" xyz = "0 0 0"/>
                 <parent link = "sa2::aLink" />
                 <child link = "sa2::sbLink" />
         </joint>
-<!-- 
+
         <joint name="sa2::j_sb_cwa" type="continuous">
                 <origin rpy = "0 1.5708 0" xyz = "0.010 0 0.0025"/>
                 <parent link = "sa2::sbLink" />
@@ -172,14 +172,14 @@
                 <parent link = "sa2::sbLink" />
                 <child link = "sa2::ccwaLink" />
                 <axis xyz="0 0 1" />
-        </joint> -->
+        </joint>
 
         <joint name="sa3::j_a_sb" type="fixed">
                 <origin rpy = "0 0 0" xyz = "0 0 0"/>
                 <parent link = "sa3::aLink" />
                 <child link = "sa3::sbLink" />
         </joint>
-<!-- 
+
         <joint name="sa3::j_sb_cwa" type="continuous">
                 <origin rpy = "0 1.5708 0" xyz = "0.010 0 0.0025"/>
                 <parent link = "sa3::sbLink" />
@@ -188,12 +188,12 @@
 
         </joint>
 
-        <joint name="0 -1.5708 0" type="continuous">
+        <joint  name="sa3::j_sb_ccwa" type="continuous">
                 <origin rpy = "0 1.5708 0" xyz = "-0.010 0 0.0025"/>
                 <parent link = "sa3::sbLink" />
                 <child link = "sa3::ccwaLink" />
                 <axis xyz="0 0 1" />
-        </joint> -->
+        </joint>
 
         <joint name="wa2::j_a_wb" type="fixed">
                 <origin rpy = "0 1.5708 0" xyz = "0 0 0.0025"/>
@@ -201,19 +201,19 @@
                 <child link = "wa2::wbLink" />
         </joint>
 
-        <!-- <joint name="wa2::j_wb_fw" type="continuous">
+        <joint name="wa2::j_wb_fw" type="continuous">
                 <origin rpy = "1.5708 0 0" xyz = "0.009 0 0.07425"/>
                 <parent link = "wa2::wbLink" />
                 <child link = "wa2::fwLink" />
                <axis xyz="0 0 1" />
-        </joint> -->
+        </joint>
 
-        <!-- <joint name="wa2::j_wb_rw" type="continuous">
+        <joint name="wa2::j_wb_rw" type="continuous">
                 <origin rpy = "1.5708 0 0" xyz = "0.009 0 -0.07425"/>
                 <parent link = "wa2::wbLink" />
                 <child link = "wa2::rwLink" />
                <axis xyz="0 0 1" />
-        </joint> -->
+        </joint>
 
         <joint name="wa3::j_a_wb" type="fixed">
                 <origin rpy = "0 1.5708 0" xyz = "0 0 0.0025"/>
@@ -221,7 +221,7 @@
                 <child link = "wa3::wbLink" />
         </joint>
 
-        <!-- <joint name="wa3::j_wb_fw" type="continuous">
+        <joint name="wa3::j_wb_fw" type="continuous">
                 <origin rpy = "1.5708 0 0" xyz = "0.009 0 0.07425"/>
                 <parent link = "wa3::wbLink" />
                 <child link = "wa3::fwLink" />
@@ -233,7 +233,7 @@
                 <parent link = "wa3::wbLink" />
                 <child link = "wa3::rwLink" />
                <axis xyz="0 0 1" />
-        </joint> -->
+        </joint>
 
 <!-- <gazebo reference="d_435_camera">
     <self_collide>0</self_collide>

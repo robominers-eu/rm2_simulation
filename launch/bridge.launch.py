@@ -64,11 +64,11 @@ def generate_launch_description():
                                   'use_sim_time': use_sim_time
                               }],
                               arguments=[
-                                  '/world/default/model/rm2_sim/joint_state'
+                                  '/world/cave_world/model/rm2_sim/joint_state'
                                   + '@sensor_msgs/msg/JointState' + '[ignition.msgs.Model'
                               ],
                               remappings=[
-                                  ('/world/default/model/rm2_sim/joint_state', '/joint_states')
+                                  ('/world/cave_world/model/rm2_sim/joint_state', '/joint_states')
                               ])
 
     # lidar bridge

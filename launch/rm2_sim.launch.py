@@ -52,7 +52,7 @@ def generate_launch_description():
     return LaunchDescription([
       DeclareLaunchArgument(
           'ign_args',
-          default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
+            default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
         ign_gazebo,
         spawn,
         ign_bridge,
