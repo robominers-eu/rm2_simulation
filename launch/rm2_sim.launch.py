@@ -27,6 +27,7 @@ def generate_launch_description():
                   arguments=[
                     '-name', 'rm2_sim',
                     '-file',  os.path.join(pkg, 'models', 'rm2', 'rm2_sim', 'model.sdf'),
+                    # '-file',  os.path.join(pkg, 'models', 'x1', 'model.sdf'),
                     '-z', '-0.18',
                     '-y', '-0.65',
                     '-x', '3.73',

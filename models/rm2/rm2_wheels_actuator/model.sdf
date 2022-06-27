@@ -26,7 +26,7 @@
         <geometry>
           <cylinder>
             <radius>0.018</radius> <!--Rab-->
-            <length>0.155</length> <!--Lab-->
+            <length>0.080</length> <!--Lab-->
           </cylinder>
         </geometry>
       </collision>
@@ -35,7 +35,7 @@
         <geometry>
           <cylinder>
             <radius>0.018</radius> <!--Rab-->
-            <length>0.155</length> <!--Lab-->
+            <length>0.080</length> <!--Lab-->
           </cylinder>
         </geometry>
           <material>
@@ -70,17 +70,17 @@
       <collision name='collision'>
         <geometry>
           <cylinder>
-            <radius>0.028</radius> <!-- Rw -->
-            <length>0.08</length> <!-- Lw -->
+            <radius>0.030</radius> <!-- Rw -->
+            <length>0.010</length> <!-- Lw -->
           </cylinder>
         </geometry>
       </collision>
-      <!-- <visual name='visual'>
+      <visual name='visual'>
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.028</radius>
-            <length>0.020</length> 
+            <radius>0.030</radius> <!-- Rw -->
+            <length>0.010</length> <!-- Lw -->
           </cylinder>
         </geometry>
           <material>
@@ -88,14 +88,14 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
           </material>
-      </visual> -->
+      </visual>
     </link>
     
     <!-- JOINT WHEELS BAR - FRONT WHEEL -->
     <joint name="j_wb_fw" type="revolute">
       <!--La unión de la base del actuador y la rueda delantera está a la mitad de la longitud de la base del actuador desde su centro de masas en el eje abZ con sentido positivo: Lab/2=0.12/2=0.06
       Además, hay que orientar el eje local de la rueda delantera, fwZ, con el eje local de la base del actuador y, abY, para que quede saliente, girando 90º desde el eje x: roll=pi/2=1.5708-->
-      <pose relative_to="wbLink">0.009 0 0.07425 1.5708 0 0</pose>
+      <pose relative_to="wbLink">0.009 0 0.040 1.5708 0 0</pose>
       <parent>wbLink</parent>
       <child>fwLink</child>
       <axis>
@@ -122,16 +122,16 @@
         <geometry>
           <cylinder>
             <radius>0.030</radius> <!-- Rw -->
-            <length>0.08</length> <!-- Lw -->
+            <length>0.010</length> <!-- Lw -->
           </cylinder>
         </geometry>
       </collision>
-      <!-- <visual name='visual'>
+      <visual name='visual'>
         <transparency>0.1</transparency>
         <geometry>
           <cylinder>
-            <radius>0.030</radius> 
-            <length>0.020</length> 
+            <radius>0.030</radius> <!-- Rw -->
+            <length>0.010</length> <!-- Lw -->
           </cylinder>
         </geometry>
           <material>
@@ -139,7 +139,7 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
           </material>
-      </visual> -->
+      </visual>
     </link>
     
     <!-- JOINT WHEELS BAR - REAR WHEEL -->
@@ -148,7 +148,7 @@
         desde su centro de masas en el eje abZ con sentido positivo: Lab/2=0.155/2=0.07525
       Además, hay que orientar el eje local de la rueda delantera, rwZ, con el eje local de la base del actuador y,
        abY, para que quede saliente, girando 90º desde el eje x: roll=pi/2=1.5708-->
-      <pose relative_to="wbLink">0.009 0 -0.07425 1.5708 0 0</pose>
+      <pose relative_to="wbLink">0.009 0 -0.040 1.5708 0 0</pose>
       <parent>wbLink</parent>
       <child>rwLink</child>
       <axis>

@@ -30,7 +30,6 @@
             <uri>model://rm2/rm2_body/meshes/body_structure_blue.dae</uri>
           </mesh>
         </geometry>
-
         <!--<material><ambient>0.0 0.0 0.9 1</ambient><diffuse>0.0 0.0 0.9 1</diffuse><specular>0.0 0.0 0.9 1</specular></material>-->
       </visual>
     </link>
@@ -93,7 +92,7 @@
     <include>
       <!-- Posición del centro de masas del motor respecto al centro del eje del acople del motor -->
       <!-- Se usarán tolerancias de +-0.1mm y de +-0.0001 rad-->
-      <pose relative_to="j_b_l2">-0.0822 0 0.0105 -1.0472 0 0</pose>
+      <pose relative_to="j_b_l2">-0.0822 0 0.0105 -0.523599 0 0</pose>
       <uri>model://rm2/rm2_simple_leg</uri>
       <name>l2</name>
     </include>
@@ -125,7 +124,8 @@
     <!-- INCLUDE WHEELS ACTUATOR 2 - LEFT -->
     <include>
       <!-- Posición del centro de masas de la base del actuador respecto al eje de unión negativo en x y negativo en y con frames -->
-      <pose relative_to="j_l2_wa2">-0.0045 -0.024 0.0107 0 0 0</pose>
+      <pose relative_to="j_l2_wa2">-0.0045 -0.024 0.0107 -0.523599 0 0</pose>
+      <!-- <pose relative_to="j_l2_wa2">-0.0045 -0.324 0.0107 0 0 0</pose> -->
       <uri>model://rm2/rm2_wheels_actuator</uri>
       <name>wa2</name>
     </include>
@@ -156,7 +156,7 @@
     <include>
       <!-- Posición del centro de masas del motor respecto al centro del eje del acople del motor -->
       <!-- Se usarán tolerancias de +-0.1mm y de +-0.0001 rad-->
-      <pose relative_to="j_b_l3">-0.0822 0 0.0105 1.0472 0 0</pose>
+      <pose relative_to="j_b_l3">-0.0822 0 0.0105 0.523599 0 0</pose>
       <uri>model://rm2/rm2_simple_leg</uri>
       <name>l3</name>
     </include>
@@ -172,7 +172,7 @@
     <!-- INCLUDE SCREW ACTUATOR 3 - RIGHT -->
     <include>
       <!-- Posición del centro de masas de la base del actuador respecto al eje de unión negativo en x y negativo en y con frames -->
-      <pose relative_to="j_l3_sa3">-0.0045 -0.024 0.0107 0 0 0</pose>
+      <pose relative_to="j_l3_sa3">-0.0045 -0.024 0.0107 0 0 3.14159</pose>
       <uri>model://rm2/rm2_screw_actuator</uri>
       <name>sa3</name>
     </include>
@@ -188,7 +188,8 @@
     <!-- INCLUDE WHEELS ACTUATOR 3 - RIGHT -->
     <include>
       <!-- Posición del centro de masas de la base del actuador respecto al eje de unión negativo en x y negativo en y con frames -->
-      <pose relative_to="j_l3_sa3">-0.0045 -0.024 0.0107 0 0 0</pose>
+      <pose relative_to="j_l3_wa3">-0.0045 -0.024 0.0107 0.523599 0 0</pose>
+      <!-- <pose relative_to="j_l3_wa3">-0.0045 0.276 0.0107 0 0 0</pose> -->
       <uri>model://rm2/rm2_wheels_actuator</uri>
       <name>wa3</name>
     </include>
@@ -204,7 +205,7 @@
     <!-- INCLUDE CAMERA -->
     <link name = "d_435_camera">
       <collision name="d435_camera_collision">
-        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="j_rgbd_b">0 0 0 0 0 0</pose>
         <geometry>
           <box>
             <size>0.02505 0.09 0.025</size>
@@ -227,7 +228,7 @@
       </collision>
 
       <visual name="d435_camera_visual">
-        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="j_rgbd_b">0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -240,7 +241,7 @@
         <always_on>1</always_on>
         <update_rate>30</update_rate>
         <visualize>1</visualize>
-        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="j_rgbd_b">0 0 0 0 0 0</pose>
         <topic>/model/rm2_sim/rgbd_camera</topic>
         <camera name="d435">
           <horizontal_fov>1.21126</horizontal_fov>
@@ -266,7 +267,7 @@
         <update_rate>90</update_rate>
         <visualize>0</visualize>
         <topic>/model/rm2_sim/depth_camera</topic>
-        <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
+        <pose relative_to="j_rgbd_b">0 0 0 0 0 0</pose>
         <camera name="d435">
           <horizontal_fov>1.48702</horizontal_fov>
           <image>
@@ -286,10 +287,17 @@
       </sensor>
     </link>
 
+    <!-- Joint camera - body -->
+    <joint name="j_rgbd_b" type="fixed">
+      <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
+      <parent> base_link</parent>
+      <child>d_435_camera</child>
+    </joint>
+
     <!-- Include lidar for mapping -->
     <link name = "lidar">
       <collision name="lidar_collision">
-        <pose relative_to="base_link">0 0 0.25 0 0 0</pose>
+        <pose relative_to="j_lidar_b">0 0 0 0 0 0</pose>
         <geometry>
           <box>
             <size>0.02505 0.09 0.025</size>
@@ -298,7 +306,7 @@
       </collision>
 
       <sensor name="front_lidar" type="gpu_lidar">
-        <pose relative_to="base_link">0.0 0 0.25 0 -0 0</pose>
+        <pose relative_to="j_lidar_b">0 0 0 0 0 0</pose>
         <topic>/model/rm2_sim/laserscan</topic>
         <visualize>0</visualize>
         <update_rate>10</update_rate>
@@ -325,16 +333,10 @@
         </ray>
       </sensor>
     </link>
-    <!-- Joint camera - body -->
-    <joint name="j_rgbd_b" type="fixed">
-      <pose relative_to="base_link">0.090 0 0.038911 0 0 0</pose>
-      <parent> base_link</parent>
-      <child>d_435_camera</child>
-    </joint>
 
     <!-- Joint lidar - body -->
     <joint name="j_lidar_b" type="fixed">
-      <pose relative_to="base_link">0.0 0 0.25 0 0 0</pose>
+      <pose relative_to="base_link">0 0 0.25 0 0 0</pose>
       <parent>base_link</parent>
       <child>lidar</child>
     </joint>
@@ -365,7 +367,7 @@
       <left_joint>wa2::j_wb_bw</left_joint>
       <right_joint>wa3::j_wb_fw</right_joint>
       <right_joint>wa3::j_wb_bw</right_joint>
-      <wheel_separation>0.130</wheel_separation>
+      <wheel_separation>0.245</wheel_separation>
       <wheel_radius>0.030</wheel_radius>
       <odom_publish_frequency>1000</odom_publish_frequency>
       <topic>/cmd_vel</topic>
