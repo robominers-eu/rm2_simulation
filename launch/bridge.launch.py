@@ -15,6 +15,8 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     robot_name = 'rm2_sim'
     ign_model_prefix = '/model/' + robot_name
+    world_name = 'cave_world'
+    ign_world_prefix = '/world/' + world_name 
 
     # clock bridge
     clock_bridge = Node(package='ros_ign_bridge', executable='parameter_bridge',
@@ -64,11 +66,11 @@ def generate_launch_description():
                                   'use_sim_time': use_sim_time
                               }],
                               arguments=[
-                                  '/world/cave_world/model/rm2_sim/joint_state'
+                                  ign_world_prefix + ign_model_prefix + '/joint_state'
                                   + '@sensor_msgs/msg/JointState' + '[ignition.msgs.Model'
                               ],
                               remappings=[
-                                  ('/world/cave_world/model/rm2_sim/joint_state', '/joint_states')
+                                  (ign_world_prefix + ign_model_prefix + '/joint_state', '/joint_states')
                               ])
 
     # lidar bridge
