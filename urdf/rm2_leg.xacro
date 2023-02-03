@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="simple_leg" params="name origin_xyz origin_rpy">
+    <link name="${name}_lLink">
+
+      <inertial>
+        <mass value="0.001" />
+        <inertia ixx="0.00012" ixy="0" ixz="0" iyy="0.00096" iyz="0"
+          izz="0.00094" />
+      </inertial>
+    </link>
+
+    <!-- JOINT LEG - MOTORS -->
+    <joint name="${name}_j_l_m" type="fixed">
+      <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
+      <parent link="${name}_lLink" />
+      <child link="${name}_mLink" />
+    </joint>
+
+    <!-- INCLUDE MOTORS-->
+    <link name="${name}_mLink">
+      <inertial>
+        <mass value="0.393" />
+        <inertia ixx="0.00012" ixy="0" ixz="0" iyy="0.00096" iyz="0"
+          izz="0.00094" />
+      </inertial>
+      <collision name='collision_base'>
+        <geometry>
+          <mesh filename="file://$(find rm2_simulation)/urdf/meshes/motors.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <visual name='visual_base'>
+        <geometry>
+          <mesh filename="file://$(find rm2_simulation)/urdf/meshes/motors.dae" />
+        </geometry>
+      </visual>
+    </link>
+ 
+    <!-- JOINT MOTORS - FRAMES -->
+
+    <joint name="${name}_j_m_f" type="fixed">
+      <origin xyz="0.0153 0.019 0.0135" rpy="0 0 0" />
+      <parent link="${name}_mLink" />
+      <child link="${name}_fLink" />
+    </joint>
+
+    <!-- INCLUDE FRAMES -->
+
+    <link name="${name}_fLink"> 
+      <inertial>
+        <mass value="0.044" />
+        <inertia ixx="0.00007" ixy="0" ixz="0" iyy="0.00012" iyz="0"
+          izz="0.00009" />
+      </inertial>
+      <collision name='collision_base'>
+        <origin xyz="-0.0162 -0.019 0.0447" rpy="0 0 0" />
+        <geometry>
+          <box size="0.13 0.047 0.096" />
+        </geometry>
+      </collision>
+      <visual name='visual_base'>
+        <origin xyz="-0.0162 -0.019 0.0447" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find rm2_simulation)/urdf/meshes/frames.dae" />
+        </geometry>
+      </visual>
+    </link>
+
+  </xacro:macro>
+</robot>

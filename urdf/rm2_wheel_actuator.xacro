@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="wheel_actuator" params="name origin_xyz origin_rpy">
+
+        <!-- INCLUDE ACTUATOR LINK -->
+        <link name="${name}_aLink">
+            <inertial>
+                <mass value="0.001" />
+                <inertia ixx="0.00012" ixy="0" ixz="0" iyy="0.00096" iyz="0"
+                    izz="0.00094" />
+            </inertial>
+        </link>
+
+        <!-- INCLUDE WHEELS BAR -->
+        <link name="${name}_wbLink">
+            <inertial>
+                <mass value="0.2" />
+                <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0"
+                    izz="0.064" />
+            </inertial>
+            <collision name='collision_base'>
+                <geometry>
+                    <cylinder length="0.08" radius="0.018" />
+                </geometry>
+            </collision>
+            <!-- <visual name='visual_base'>
+                <geometry>
+                    <cylinder length="0.08" radius="0.018" />
+                </geometry>
+                <material name="green">
+                    <color rgba="0 1 0 1" />
+                </material>
+            </visual> -->
+        </link>
+
+        <!-- JOINT ACTUATOR - WHEELS BAR -->
+        <joint name="${name}_j_a_wb" type="fixed">
+            <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
+            <parent link="${name}_aLink" />
+            <child link="${name}_wbLink" />
+        </joint>
+
+        <!-- INCLUDE FRONT WHEEL -->
+        <link name="${name}_fwLink">
+            <inertial>
+                <mass value="0.1" />
+                <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0"
+                    izz="0.064" />
+            </inertial>
+            <collision name='collision_base'>
+                <geometry>
+                    <cylinder length="0.01" radius="0.03" />
+                </geometry>
+            </collision>
+            <!-- <visual name='visual_base'>
+                <geometry>
+                    <cylinder length="0.01" radius="0.03" />
+                </geometry>
+                <material name="red">
+                    <color rgba="1 0 0 1" />
+                </material>
+            </visual> -->
+        </link>
+
+
+        <!-- JOINT WHEELS BAR - FRONT WHEEL -->
+        <joint name="${name}_j_wb_fw" type="continuous">
+            <origin rpy="1.5708 0 0" xyz="0.009 0 0.040" />
+            <parent link="${name}_wbLink" />
+            <child link="${name}_fwLink" />
+            <axis rpy="0 0 0" xyz="0 0 1" />
+            <limit
+                effort="500"
+                velocity="${pi}" />
+        </joint>
+
+        <!-- INCLUDE REAR WHEEL -->
+
+        <link name="${name}_rwLink">
+            <inertial>
+                <mass value="0.1" />
+                <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0"
+                    izz="0.064" />
+            </inertial>
+            <collision name='collision_base'>
+                <geometry>
+                    <cylinder length="0.01" radius="0.03" />
+                </geometry>
+            </collision>
+            <!-- <visual name='visual_base'>
+                <geometry>
+                    <cylinder length="0.01" radius="0.03" />
+                </geometry>
+                <material name="red">
+                    <color rgba="1 0 0 1" />
+                </material>
+            </visual> -->
+        </link>
+
+        <!-- JOINT WHEELS BAR - REAR WHEEL -->
+        <joint name="${name}_j_wb_rw" type="continuous">
+            <origin rpy="1.5708 0 0" xyz="0.009 0 -0.040" />
+            <parent link="${name}_wbLink" />
+            <child link="${name}_rwLink" />
+            <axis rpy="0 0 0" xyz="0 0 1" />
+            <limit
+                effort="500"
+                velocity="${pi}" />
+        </joint>
+    </xacro:macro>
+</robot>

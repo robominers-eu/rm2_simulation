@@ -41,9 +41,9 @@ def generate_launch_description():
     spawn = Node(package='ros_ign_gazebo', executable='create',
                  arguments=[
                     '-name', 'rm2_sim',
-                    '-z', '-0.18',
-                    '-y', '-0.015',
-                    '-x', '0.73',
+                    '-z', '-0.21',
+                    '-y', '0',
+                    '-x', '1.000',
                     '-topic', '/robot_description'],
                  output='screen')
 
@@ -61,8 +61,8 @@ def generate_launch_description():
             default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
         ign_gazebo,
         spawn,
-        ign_bridge,
+        #ign_bridge,
         state_publisher,
-        rviz,
+        # rviz,
     ])
 

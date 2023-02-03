@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="screw_actuator" params="name origin_xyz origin_rpy">
+        <link name="${name}_aLink">
+            <inertial>
+                <mass value="0.001" />
+                <inertia ixx="0.00012" ixy="0" ixz="0" iyy="0.00096" iyz="0"
+                    izz="0.00094" />
+            </inertial>
+        </link>
+
+        <!-- JOINT ACTUATOR - SCREW BASE -->
+        <joint name="${name}_j_a_sb" type="fixed">
+            <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
+            <parent link="${name}_aLink" />
+            <child link="${name}_sbLink" />
+        </joint>
+
+        <!-- INCLUDE SCREW BASE -->
+        <link name="${name}_sbLink">
+            <inertial>
+                <mass value="0.2" />
+                <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0"
+                    izz="0.00024" />
+            </inertial>
+            <!-- <collision name='collision_base'>
+        <geometry>
+            <cylinder>
+                <radius>0.010</radius>
+                <length>0.050</length>
+              </cylinder>
+        </geometry>
+      </collision> -->
+            <visual name='visual_base'>
+                <geometry>
+                    <mesh filename="file://$(find rm2_simulation)/urdf/meshes/screw_base.dae" />
+                </geometry>
+            </visual>
+        </link>
+
+        <!-- JOINT SCREW BASE - CW SCREW -->
+        <joint name="${name}_j_sb_cws" type="continuous">
+            <origin xyz="0.010 0 0.0025" rpy="0 1.5708 0" />
+            <parent link="${name}_sbLink" />
+            <child link="${name}_cwsLink" />
+            <axis rpy="0 0 0" xyz="0 0 1" />
+            <limit
+            effort="500"
+            velocity="${pi}" />
+        </joint>
+
+        <!-- INCLUDE CW SCREW -->
+        <link name="${name}_cwsLink">
+            <inertial>
+                <mass value="0.2" />
+                <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0" izz="0.00024" />
+            </inertial>
+            <!-- <collision name='collision_base'>
+      <geometry>
+          <cylinder>
+              <radius>0.010</radius>
+              <length>0.050</length>
+            </cylinder>
+      </geometry>
+    </collision> -->
+            <visual name='visual_base'>
+                <origin xyz="0.0 0.0 0.0406" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="file://$(find rm2_simulation)/urdf/meshes/forward_screw.dae" />
+                </geometry>
+            </visual>
+        </link>
+
+        <!-- JOINT SCREW BASE - CCW SCREW -->
+        <joint name="${name}_j_sb_ccws" type="continuous">
+            <origin xyz="-0.010 0 0.0025" rpy="0 -1.5708 0" />
+            <parent link="${name}_sbLink" />
+            <child link="${name}_ccwsLink" />
+            <axis rpy="0 0 0" xyz="0 0 1" />
+            <limit
+            effort="500"
+            velocity="${pi}"/>
+        </joint>
+
+        <link name="${name}_ccwsLink">
+            <inertial>
+                <mass value="0.2" />
+                <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0" izz="0.00024" />
+            </inertial>
+            <!-- <collision name='collision_base'>
+          <geometry>
+              <cylinder>
+                  <radius>0.010</radius>
+                  <length>0.050</length>
+                </cylinder>
+          </geometry>
+        </collision> -->
+            <visual name='visual_base'>
+                <origin xyz="0.0 0.0 0.0406" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="file://$(find rm2_simulation)/urdf/meshes/backward_screw.dae" />
+                </geometry>
+            </visual>
+        </link>
+
+
+    </xacro:macro>
+</robot>

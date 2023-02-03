@@ -1,28 +1,125 @@
 <?xml version="1.0"?>
 <robot name="rm2_sim" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<!-- <xacro:include filename="$(find robot_sim)/urdf/p3/robot.gazebo" /> -->
+  <xacro:include filename="$(find rm2_simulation)/urdf/rm2_leg.xacro" />
+  <xacro:include filename="$(find rm2_simulation)/urdf/rm2_screw_actuator.xacro" />
+  <xacro:include filename="$(find rm2_simulation)/urdf/rm2_wheel_actuator.xacro" />
+  <xacro:include filename="$(find rm2_simulation)/urdf/rm2.gazebo" />
 
-<link name="base_link">
+  <link name="base_link">
     <pose>0 0 0 0 0 0</pose>
     <inertial>
-        <mass value="1.114" />
-        <origin rpy="0 0 0" xyz="0 0 0.0" />
-        <inertia ixx="0.00773" ixy="0" ixz="0" iyy="0.00937" iyz="0"
-          izz="0.00938" />
-      </inertial>
+      <mass value="1.114" />
+      <inertia ixx="0.00773" ixy="0" ixz="0" iyy="0.00937" iyz="0"
+        izz="0.00938" />
+    </inertial>
     <collision name='collision_base'>
       <geometry>
-            <mesh filename="file://$(find rm2_simulation)/urdf/meshes/body_collision.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file://$(find rm2_simulation)/urdf/meshes/body_collision.stl"
+          scale="0.001 0.001 0.001" />
       </geometry>
     </collision>
     <visual name='visual_base'>
       <geometry>
-        <mesh filename="file://$(find rm2_simulation)/urdf/meshes/body_structure_blue.dae"/>
+        <mesh filename="file://$(find rm2_simulation)/urdf/meshes/body_structure_blue.dae" />
       </geometry>
     </visual>
   </link>
 
 
+  <!-- =================================================================================== -->
+  <!-- |                                          LEGS                                   | -->
+  <!-- =================================================================================== -->
 
-  </robot>
+  <!-- JOINT BODY - SIMPLE LEG 1 -->
+  <joint name="j_b_l1" type="fixed">
+    <origin xyz="0.083 0 0.075" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="l1_lLink" />
+  </joint>
+
+  <!-- INCLUDE SIMPLE LEG 1 -->
+  <xacro:simple_leg name="l1" origin_xyz="-0.0822 0 0.0105" origin_rpy="0 0 0" />
+
+  <!-- JOINT BODY - SIMPLE LEG 2 (LEFT)-->
+  <joint name="j_b_l2" type="fixed">
+    <origin xyz="0.083 0.065 -0.0375" rpy="-2.0944 0 0" />
+    <parent link="base_link" />
+    <child link="l2_lLink" />
+  </joint>
+
+  <!-- INCLUDE SIMPLE LEG 2 (LEFT)-->
+  <xacro:simple_leg name="l2" origin_xyz="-0.0822 0 0.0105" origin_rpy="-0.523599 0 0" />
+
+  <!-- JOINT BODY - SIMPLE LEG 3 (RIGHT)-->
+  <joint name="j_b_l3" type="fixed">
+    <origin xyz="0.083 -0.065 -0.0375" rpy="2.0944 0 0" />
+    <parent link="base_link" />
+    <child link="l3_lLink" />
+  </joint>
+
+  <!-- INCLUDE SIMPLE LEG 3 (RIGHT)-->
+  <xacro:simple_leg name="l3" origin_xyz="-0.0822 0 0.0105" origin_rpy="0.523599 0 0" />
+
+
+  <!-- =================================================================================== -->
+  <!-- |                                      ACTUATORS                                  | -->
+  <!-- =================================================================================== -->
+
+
+  <!-- INCLUDE SCREW ACTUATOR 1 -->
+  <xacro:screw_actuator name="sa1" origin_xyz="-0.0045 -0.024 0.0107" origin_rpy="0 0 0" />
+
+  <!-- JOINT SIMPLE LEG 1 - SCREW ACTUATOR -->
+  <joint name="j_l1_sa1" type="fixed">
+    <origin xyz="-0.0127 0.005 0.092" rpy="0 0 0" />
+    <parent link="l1_fLink" />
+    <child link="sa1_aLink" />
+  </joint>
+
+  <!-- INCLUDE SCREW ACTUATOR 2 -->
+  <xacro:screw_actuator name="sa2" origin_xyz="-0.0045 -0.024 0.0107" origin_rpy="0 0 0" />
+
+  <!-- JOINT SIMPLE LEG 2 - SCREW ACTUATOR -->
+  <joint name="j_l1_sa2" type="fixed">
+    <origin xyz="-0.0127 0.005 0.092" rpy="0 0 0" />
+    <parent link="l2_fLink" />
+    <child link="sa2_aLink" />
+  </joint>
+
+  <!-- INCLUDE SCREW ACTUATOR 3 -->
+  <xacro:screw_actuator name="sa3" origin_xyz="-0.0045 -0.024 0.0107" origin_rpy="0 0 3.14159" />
+
+  <!-- JOINT SIMPLE LEG 3 - SCREW ACTUATOR -->
+  <joint name="j_l1_sa3" type="fixed">
+    <origin xyz="-0.0127 0.005 0.092" rpy="0 0 0" />
+    <parent link="l3_fLink" />
+    <child link="sa3_aLink" />
+  </joint>
+
+  <!-- =================================================================================== -->
+  <!-- |                                          WHEELS                                 | -->
+  <!-- =================================================================================== -->
+
+
+  <!-- INCLUDE WHEELS ACTUATOR 2 (LEFT) -->
+  <xacro:wheel_actuator name="wa2" origin_xyz="-0.0045 -0.024 0.0107" origin_rpy="0 1.5708 0" />
+
+  <!-- JOINT SIMPLE LEG 2 - WHEELS ACTUATOR 2 (LEFT) -->
+  <joint name="j_l2_wa2" type="fixed">
+    <origin xyz="-0.0127 0.005 0.092" rpy="0 0 0" />
+    <parent link="l2_fLink" />
+    <child link="wa2_aLink" />
+  </joint>
+
+
+  <!-- INCLUDE WHEELS ACTUATOR 3 (LEFT) -->
+  <xacro:wheel_actuator name="wa3" origin_xyz="-0.0045 -0.024 0.0107" origin_rpy="0 1.5708 0" />
+
+  <!-- JOINT SIMPLE LEG 3 - WHEELS ACTUATOR 3 (LEFT) -->
+  <joint name="j_l3_wa3" type="fixed">
+    <origin xyz="-0.0127 0.005 0.092" rpy="0 0 0" />
+    <parent link="l3_fLink" />
+    <child link="wa3_aLink" />
+  </joint>
+</robot>

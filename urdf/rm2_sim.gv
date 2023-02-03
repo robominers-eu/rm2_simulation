@@ -1,0 +1,80 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"l1_lLink" [label="l1_lLink"];
+"l1_mLink" [label="l1_mLink"];
+"l1_fLink" [label="l1_fLink"];
+"sa1_aLink" [label="sa1_aLink"];
+"sa1_sbLink" [label="sa1_sbLink"];
+"sa1_ccwsLink" [label="sa1_ccwsLink"];
+"sa1_cwsLink" [label="sa1_cwsLink"];
+"l2_lLink" [label="l2_lLink"];
+"l2_mLink" [label="l2_mLink"];
+"l2_fLink" [label="l2_fLink"];
+"wa2_aLink" [label="wa2_aLink"];
+"wa2_wbLink" [label="wa2_wbLink"];
+"wa2_fwLink" [label="wa2_fwLink"];
+"wa2_rwLink" [label="wa2_rwLink"];
+"sa2_aLink" [label="sa2_aLink"];
+"sa2_sbLink" [label="sa2_sbLink"];
+"sa2_ccwsLink" [label="sa2_ccwsLink"];
+"sa2_cwsLink" [label="sa2_cwsLink"];
+"l3_lLink" [label="l3_lLink"];
+"l3_mLink" [label="l3_mLink"];
+"l3_fLink" [label="l3_fLink"];
+"sa3_aLink" [label="sa3_aLink"];
+"sa3_sbLink" [label="sa3_sbLink"];
+"sa3_ccwsLink" [label="sa3_ccwsLink"];
+"sa3_cwsLink" [label="sa3_cwsLink"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "j_b_l1" [label="xyz: 0.083 0 0.075 \nrpy: 0 -0 0"]
+"j_b_l1" -> "l1_lLink"
+"l1_lLink" -> "l1_j_l_m" [label="xyz: -0.0822 0 0.0105 \nrpy: 0 -0 0"]
+"l1_j_l_m" -> "l1_mLink"
+"l1_mLink" -> "l1_j_m_f" [label="xyz: 0.0153 0.019 0.0135 \nrpy: 0 -0 0"]
+"l1_j_m_f" -> "l1_fLink"
+"l1_fLink" -> "j_l1_sa1" [label="xyz: -0.0127 0.005 0.092 \nrpy: 0 -0 0"]
+"j_l1_sa1" -> "sa1_aLink"
+"sa1_aLink" -> "sa1_j_a_sb" [label="xyz: -0.0045 -0.024 0.0107 \nrpy: 0 -0 0"]
+"sa1_j_a_sb" -> "sa1_sbLink"
+"sa1_sbLink" -> "sa1_j_sb_ccws" [label="xyz: -0.01 0 0.0025 \nrpy: 0 -1.5708 0"]
+"sa1_j_sb_ccws" -> "sa1_ccwsLink"
+"sa1_sbLink" -> "sa1_j_sb_cws" [label="xyz: 0.01 0 0.0025 \nrpy: 0 1.5708 -0"]
+"sa1_j_sb_cws" -> "sa1_cwsLink"
+"base_link" -> "j_b_l2" [label="xyz: 0.083 0.065 -0.0375 \nrpy: -2.0944 0 0"]
+"j_b_l2" -> "l2_lLink"
+"l2_lLink" -> "l2_j_l_m" [label="xyz: -0.0822 0 0.0105 \nrpy: -0.523599 0 0"]
+"l2_j_l_m" -> "l2_mLink"
+"l2_mLink" -> "l2_j_m_f" [label="xyz: 0.0153 0.019 0.0135 \nrpy: 0 -0 0"]
+"l2_j_m_f" -> "l2_fLink"
+"l2_fLink" -> "j_l12_wa2" [label="xyz: -0.0127 0.005 0.092 \nrpy: 0 -0 0"]
+"j_l12_wa2" -> "wa2_aLink"
+"wa2_aLink" -> "wa2_j_a_wb" [label="xyz: -0.0045 -0.024 0.0107 \nrpy: 0 1.5708 -0"]
+"wa2_j_a_wb" -> "wa2_wbLink"
+"wa2_wbLink" -> "wa2_j_wb_fw" [label="xyz: 0.009 0 0.04 \nrpy: 1.5708 -0 0"]
+"wa2_j_wb_fw" -> "wa2_fwLink"
+"wa2_wbLink" -> "wa2_j_wb_rw" [label="xyz: 0.009 0 -0.04 \nrpy: 1.5708 -0 0"]
+"wa2_j_wb_rw" -> "wa2_rwLink"
+"l2_fLink" -> "j_l1_sa2" [label="xyz: -0.0127 0.005 0.092 \nrpy: 0 -0 0"]
+"j_l1_sa2" -> "sa2_aLink"
+"sa2_aLink" -> "sa2_j_a_sb" [label="xyz: -0.0045 -0.024 0.0107 \nrpy: 0 -0 0"]
+"sa2_j_a_sb" -> "sa2_sbLink"
+"sa2_sbLink" -> "sa2_j_sb_ccws" [label="xyz: -0.01 0 0.0025 \nrpy: 0 -1.5708 0"]
+"sa2_j_sb_ccws" -> "sa2_ccwsLink"
+"sa2_sbLink" -> "sa2_j_sb_cws" [label="xyz: 0.01 0 0.0025 \nrpy: 0 1.5708 -0"]
+"sa2_j_sb_cws" -> "sa2_cwsLink"
+"base_link" -> "j_b_l3" [label="xyz: 0.083 -0.065 -0.0375 \nrpy: 2.0944 -0 0"]
+"j_b_l3" -> "l3_lLink"
+"l3_lLink" -> "l3_j_l_m" [label="xyz: -0.0822 0 0.0105 \nrpy: 0.523599 -0 0"]
+"l3_j_l_m" -> "l3_mLink"
+"l3_mLink" -> "l3_j_m_f" [label="xyz: 0.0153 0.019 0.0135 \nrpy: 0 -0 0"]
+"l3_j_m_f" -> "l3_fLink"
+"l3_fLink" -> "j_l1_sa3" [label="xyz: -0.0127 0.005 0.092 \nrpy: 0 -0 0"]
+"j_l1_sa3" -> "sa3_aLink"
+"sa3_aLink" -> "sa3_j_a_sb" [label="xyz: -0.0045 -0.024 0.0107 \nrpy: 0 -0 3.14159"]
+"sa3_j_a_sb" -> "sa3_sbLink"
+"sa3_sbLink" -> "sa3_j_sb_ccws" [label="xyz: -0.01 0 0.0025 \nrpy: 0 -1.5708 0"]
+"sa3_j_sb_ccws" -> "sa3_ccwsLink"
+"sa3_sbLink" -> "sa3_j_sb_cws" [label="xyz: 0.01 0 0.0025 \nrpy: 0 1.5708 -0"]
+"sa3_j_sb_cws" -> "sa3_cwsLink"
+}
