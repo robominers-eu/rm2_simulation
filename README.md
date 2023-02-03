@@ -26,13 +26,19 @@ source install/setup.bash
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
+## To generate an updated URDF
 
-* If you want to use it with Nav2, follow the installation instructions from [nav_mine](https://github.com/robominers-eu/nav_mine) repo and launch it.
+Make sure you have installed xacro, install it using:
 ```
-ros2 launch nav_mine navigation2.launch.py
+install sudo apt install ros-foxy-xacro 
 ```
 
-* In rviz2, use `2D Pose Estimate` to provide initial pose of the bot to amcl so that it can start publishing the robot's pose & `map->odom tf`.
- 
-* After providing the initial pose of the bot you will see the rviz2 window updating with estimated robot pose from amcl as well as updated global and local costmap. Use the `2D Goal Pose` in rviz2 to provide the bot with a goal pose to start navigation.
-
+Navigate to the appropiate folder:
+```
+cd ~/rm2_ws/src/rm2_simulation/urdf
+```
+Execute the conversion:
+```
+xacro rm2.urdf.xacro > rm2.urdf
+```
+The generated URDF is available in that folder.
