@@ -33,7 +33,7 @@ def generate_launch_description():
          parameters=[{'use_sim_time': use_sim_time}],
         arguments=[
             '-d',
-            os.path.join(pkg, 'rviz', 'robot_description_publisher.rviz')
+            os.path.join(pkg, 'rviz', 'robot_visualization.rviz')
         ]
     )
   
@@ -41,9 +41,9 @@ def generate_launch_description():
     spawn = Node(package='ros_ign_gazebo', executable='create',
                  arguments=[
                     '-name', 'rm2_sim',
-                    '-z', '-0.21',
-                    '-y', '0',
-                    '-x', '1.000',
+                    '-z', '-0.11',
+                    '-y', '-0.32',
+                    '-x', '2.8',
                     '-topic', '/robot_description'],
                  output='screen')
 
@@ -58,11 +58,12 @@ def generate_launch_description():
     return LaunchDescription([
       DeclareLaunchArgument(
           'ign_args',
-            default_value=[os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
+            default_value=['-r ' + os.path.join(pkg, 'worlds', 'cave_world.sdf')]),
         ign_gazebo,
         spawn,
-        #ign_bridge,
+        ign_bridge,
         state_publisher,
-        # rviz,
+        rviz,
     ])
+
 

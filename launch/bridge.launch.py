@@ -25,6 +25,21 @@ def generate_launch_description():
                         output='screen',
                         arguments=['/clock' + '@rosgraph_msgs/msg/Clock' + '[ignition.msgs.Clock'],
                         )
+    
+     # imu_bridge
+    imu_bridge = Node(package='ros_ign_bridge', executable='parameter_bridge',
+                          namespace=namespace,
+                          name='imu_bridge',
+                          output='screen',
+                          parameters=[{
+                              'use_sim_time': use_sim_time
+                          }],
+                          arguments=[
+                              '/imu' + '@sensor_msgs/msg/Imu' + ']ignition.msgs.IMU'
+                          ],
+                          remappings=[
+                              ('/imu', '/imu')
+                          ])
 
     # cmd_vel bridge
     cmd_vel_bridge = Node(package='ros_ign_bridge', executable='parameter_bridge',
@@ -82,40 +97,25 @@ def generate_launch_description():
                             'use_sim_time': use_sim_time
                         }],
                         arguments=[
-                            ign_model_prefix + '/laserscan' +
+                            '/laserscan' +
                             '@sensor_msgs/msg/LaserScan' + '[ignition.msgs.LaserScan',
-                            ign_model_prefix + '/laserscan/points' +
+                            '/laserscan/points' +
                             '@sensor_msgs/msg/PointCloud2' + '[ignition.msgs.PointCloudPacked'
                         ],
                         remappings=[
-                            (ign_model_prefix + '/laserscan/points', '/scan/points'),
-                            (ign_model_prefix + '/laserscan', '/scan')
+                            ('/laserscan/points', '/scan/points'),
+                            ('/laserscan', '/scan')
                         ])
 
-    # color camera bridge
-    color_camera_bridge = Node(package='ros_ign_bridge', executable='parameter_bridge',
-                               namespace=namespace,
-                               name='color_camera_bridge',
-                               output='screen',
-                               parameters=[{
-                                   'use_sim_time': use_sim_time
-                               }],
-                               arguments=[
-                                   ign_model_prefix + '/rgbd_camera' +
-                                   '@sensor_msgs/msg/Image' + '[ignition.msgs.Image'
-                               ],
-                               remappings=[
-                                   (ign_model_prefix + '/rgbd_camera', '/rgbd_camera')
-                               ])
 
     pcl2laser_cmd = Node(
         package='pointcloud_to_laserscan',
         executable='pointcloud_to_laserscan_node',
         name='pointcloud_to_laser',
-        remappings=[('cloud_in', '/depth_camera/points'),
+        remappings=[('cloud_in', '/rgbd_camera/points'),
                     ('scan', '/scan')],
         parameters=[{
-            'target_frame': 'rm2_sim/d_435_camera/d435_depth',
+            'target_frame': 'd_435_camera',
             'transform_tolerance': 0.01,
             'min_height': 0.0,
             'max_height': 1.0,
@@ -131,26 +131,23 @@ def generate_launch_description():
     )
 
     # depth camera bridge
-    depth_camera_bridge = Node(package='ros_ign_bridge', executable='parameter_bridge',
+    camera_bridge = Node(package='ros_ign_bridge', executable='parameter_bridge',
                                namespace=namespace,
                                name='depth_camera_bridge',
                                output='screen',
                                parameters=[{
                                    'use_sim_time': use_sim_time
                                }],
-                               arguments=[
-                                   ign_model_prefix + '/depth_camera' +
-                                   '@sensor_msgs/msg/Image' + '[ignition.msgs.Image',
-                                   ign_model_prefix + '/depth_camera/points' +
-                                   '@sensor_msgs/msg/PointCloud2' +
-                                   '[ignition.msgs.PointCloudPacked',
-                                   ign_model_prefix + '/camera_info' +
-                                   '@sensor_msgs/msg/CameraInfo' + '[ignition.msgs.CameraInfo',
+                               arguments=[ '/rgbd_camera/image' + '@sensor_msgs/msg/Image' + '[ignition.msgs.Image',
+                                   '/rgbd_camera/depth_image' + '@sensor_msgs/msg/Image' + '[ignition.msgs.Image',
+                                   '/rgbd_camera/points' + '@sensor_msgs/msg/PointCloud2' +'[ignition.msgs.PointCloudPacked',
+                                   '/rgbd_camera/camera_info' + '@sensor_msgs/msg/CameraInfo' + '[ignition.msgs.CameraInfo',
                                ],
                                remappings=[
-                                   (ign_model_prefix + '/depth_camera', '/depth_camera'),
-                                   (ign_model_prefix + '/depth_camera/points', '/depth_camera/points'),
-                                   (ign_model_prefix + '/camera_info', '/camera_info'),
+                                   ('/rgbd_camera/image', '/rgbd_camera/image'),
+                                   ('/rgbd_camera/depth_image', '/rgbd_camera/depth_image'),
+                                   ('/rgbd_camera/points', '/rgbd_camera/points'),
+                                   ('/rgbd_camera/camera_info', '/rgbd_camera/camera_info'),
                                ])
 
     # odom to base_link transform bridge
@@ -171,34 +168,37 @@ def generate_launch_description():
 
     lidar_stf = Node(package='tf2_ros', executable='static_transform_publisher',
                      namespace=namespace,
+                     output='screen',
                      name='lidar_stf',
                      arguments=[
                          '0', '0', '0', '0', '0', '0', '1',
                          'lidar',
-                         'rm2_sim/lidar/front_lidar'
+                         'rm2_sim/base_link/front_lidar'
                      ])
 
     camera_stf = Node(package='tf2_ros', executable='static_transform_publisher',
                       namespace=namespace,
+                      output='screen',
                       name='camera_stf',
                       arguments=[
                           '0', '0', '0', '0', '0', '0', '1',
                               'd_435_camera',
-                              'rm2_sim/d_435_camera/d435_depth'
+                              'rm2_sim/base_link/rgbd_camera'
                       ])
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value=['false'],
                               description='use sim time from /clock'),
         clock_bridge,
+        imu_bridge,
         cmd_vel_bridge,
         joint_state_bridge,
         odometry_bridge,
-        color_camera_bridge,
-        depth_camera_bridge,
+        camera_bridge,
         odom_base_tf_bridge,
-        # camera_stf,
-        # pcl2laser_cmd,
-        lidar_bridge,
-        lidar_stf
+        camera_stf,
+        pcl2laser_cmd,
+        # lidar_bridge,
+        # lidar_stf,
+
     ])

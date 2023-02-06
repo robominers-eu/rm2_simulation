@@ -6,9 +6,9 @@
         <!-- INCLUDE ACTUATOR LINK -->
         <link name="${name}_aLink">
             <inertial>
-                <mass value="0.001" />
-                <inertia ixx="0.00012" ixy="0" ixz="0" iyy="0.00096" iyz="0"
-                    izz="0.00094" />
+                <mass value="0.0" />
+                <inertia ixx="0.0" ixy="0" ixz="0" iyy="0.0" iyz="0"
+                    izz="0.0" />
             </inertial>
         </link>
 
@@ -36,7 +36,7 @@
 
         <!-- JOINT ACTUATOR - WHEELS BAR -->
         <joint name="${name}_j_a_wb" type="fixed">
-            <origin rpy="${origin_rpy}" xyz="${origin_xyz}"/>
+            <origin rpy="${origin_rpy}" xyz="${origin_xyz}" />
             <parent link="${name}_aLink" />
             <child link="${name}_wbLink" />
         </joint>
@@ -46,11 +46,11 @@
             <inertial>
                 <mass value="0.1" />
                 <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0"
-                    izz="0.064" />
+                    izz="0.00024" />
             </inertial>
             <collision name='collision_base'>
                 <geometry>
-                    <cylinder length="0.01" radius="0.03" />
+                    <cylinder length="0.08" radius="0.028" />
                 </geometry>
             </collision>
             <!-- <visual name='visual_base'>
@@ -81,11 +81,11 @@
             <inertial>
                 <mass value="0.1" />
                 <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0"
-                    izz="0.064" />
+                    izz="0.00024" />
             </inertial>
             <collision name='collision_base'>
                 <geometry>
-                    <cylinder length="0.01" radius="0.03" />
+                    <cylinder length="0.08" radius="0.03" />
                 </geometry>
             </collision>
             <!-- <visual name='visual_base'>

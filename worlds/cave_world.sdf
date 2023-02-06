@@ -19,7 +19,7 @@
     <!-- FLOOR -->
     <model name="ground_plane">
       <static>true</static>
-      <pose>0 0 -0.37 0 0 0</pose>
+      <pose>0 0 -0.27 0 0 0</pose>
       <link name="link">
         <collision name="collision">
           <geometry>
@@ -40,7 +40,7 @@
             <diffuse>0.8 0.8 0.8 1</diffuse>
             <specular>0.8 0.8 0.8 1</specular>
           </material>
-        </visual>  -->
+        </visual>   -->
       </link>
     </model>
 
