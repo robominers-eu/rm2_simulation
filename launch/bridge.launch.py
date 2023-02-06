@@ -196,9 +196,9 @@ def generate_launch_description():
         odometry_bridge,
         camera_bridge,
         odom_base_tf_bridge,
-        camera_stf,
-        pcl2laser_cmd,
-        # lidar_bridge,
-        # lidar_stf,
+        # camera_stf,
+        # pcl2laser_cmd,
+        lidar_bridge,
+        lidar_stf,
 
     ])
