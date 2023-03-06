@@ -185,6 +185,12 @@ def generate_launch_description():
                               'd_435_camera',
                               'rm2_sim/base_link/rgbd_camera'
                       ])
+    
+    attacher = Node(
+                      package='ros_ign_bridge',
+                      executable='parameter_bridge',
+                      arguments = ['/AttachableJoint@std_msgs/msg/String]ignition.msgs.StringMsg'],
+                      output='screen')
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value=['false'],
@@ -200,4 +206,5 @@ def generate_launch_description():
         # pcl2laser_cmd,
         lidar_bridge,
         lidar_stf,
+        attacher,
     ])

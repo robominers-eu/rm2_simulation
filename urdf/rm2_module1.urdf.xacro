@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="rm2_module1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find rm2_simulation)/urdf/rm2_module.xacro"/>
+
+  <xacro:module name="m1"/>
+
+
+</robot>

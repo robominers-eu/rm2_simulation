@@ -39,7 +39,7 @@ install(
 	launch
 	models
 	worlds
-  rviz
+  	rviz
 	urdf
 	DESTINATION
 	share/${PROJECT_NAME}/
