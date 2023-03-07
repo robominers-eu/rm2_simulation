@@ -42,24 +42,3 @@ Execute the conversion:
 xacro rm2.urdf.xacro > rm2.urdf
 ```
 The generated URDF is available in that folder.
-
-## Attachable links
-First make sure you have the appropiate repositories:
-```
-cd ~/rm2_ws/src/
-vcs import < rm2_simulation/resources.repos
-```
-
-Then launch the simulation:
-```
-ros2 launch rm2_simulation rm2_sim_attach.launch.py 
-```
-
-Create the attachable link between two bodies:
-```
-ros2 topic pub --once /AttachableJoint std_msgs/msg/String "data: '[rm2_robot][base_link][rm2_module][m1_base_link][attach]'"
-```
-To detach the link:
-```
-ros2 topic pub --once /AttachableJoint std_msgs/msg/String "data: '[rm2_robot][base_link][rm2_module][m1_base_link][detach]'"
-```
