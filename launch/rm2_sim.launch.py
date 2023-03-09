@@ -13,7 +13,6 @@ def generate_launch_description():
     pkg_ros_ign_gazebo = get_package_share_directory('ros_ign_gazebo')
     pkg = get_package_share_directory('rm2_simulation')
     path_to_urdf = pkg+'/urdf/rm2.urdf.xacro'
-
     
     ign_gazebo = IncludeLaunchDescription(
       PythonLaunchDescriptionSource(
