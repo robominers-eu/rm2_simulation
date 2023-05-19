@@ -141,6 +141,64 @@
     <child link="wa3_aLink" />
   </joint>
 
+
+  <!-- =================================================================================== -->
+  <!-- |                                     COUPLING DISK                                |-->
+  <!-- =================================================================================== -->
+
+  <link name="couplingLink">
+    <inertial>
+      <mass value="1.114" />
+      <inertia ixx="0.00773" ixy="0" ixz="0" iyy="0.00937" iyz="0" izz="0.00938" />
+    </inertial>
+    <collision name='collision_coupling'>
+      <geometry>
+        <mesh filename="file://$(find rm2_simulation)/urdf/meshes/coupling_head.dae" />
+      </geometry>
+    </collision>
+    <visual name='visual_'>
+      <geometry>
+        <mesh filename="file://$(find rm2_simulation)/urdf/meshes/coupling_head.dae" />
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="j_c_b" type="fixed">
+    <origin xyz="0.10196 0.0 0.0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="couplingLink" />
+  </joint>
+
+
+  <!-- =================================================================================== -->
+  <!-- |                                     CUTTING HEAD                                 |-->
+  <!-- =================================================================================== -->
+
+  <link name="cuttingHeadLink">
+    <inertial>
+      <mass value="0.114" />
+      <inertia ixx="0.00773" ixy="0" ixz="0" iyy="0.00937" iyz="0" izz="0.00938" />
+    </inertial>
+    <collision name='collision_head'>
+      <geometry>
+        <mesh filename="file://$(find rm2_simulation)/urdf/meshes/cutting_head_simple.dae"/>
+      </geometry>
+    </collision>
+    <visual name='visual_head'>
+      <geometry>
+        <mesh filename="file://$(find rm2_simulation)/urdf/meshes/cutting_head_simple.dae" />
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="j_ch_c" type="fixed">
+    <origin xyz="0.09315
+    + 0.0 0.0" rpy="0 0 0" />
+    <parent link="couplingLink" />
+    <child link="cuttingHeadLink" />
+  </joint>
+
+
   <!-- =================================================================================== -->
   <!-- |                                          SENSORS                                | -->
   <!-- =================================================================================== -->

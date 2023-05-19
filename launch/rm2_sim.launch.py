@@ -62,7 +62,7 @@ def generate_launch_description():
         spawn,
         ign_bridge,
         state_publisher,
-        rviz,
+        # rviz,
     ])
 
 
