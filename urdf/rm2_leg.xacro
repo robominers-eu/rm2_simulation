@@ -27,7 +27,7 @@
       </inertial>
       <collision name='collision_base'>
         <geometry>
-          <mesh filename="file://$(find rm2_simulation)/urdf/meshes/motors.stl"
+          <mesh filename="file://$(find rm2_simulation)/urdf/meshes/motors.dae"
             scale="0.001 0.001 0.001" />
         </geometry>
       </collision>
