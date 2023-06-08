@@ -306,7 +306,7 @@
   <gazebo reference="d_435_camera">
     <sensor name="rgbd_camera" type="rgbd_camera">
       <always_on>true</always_on>
-      <update_rate>30</update_rate>
+      <update_rate>10</update_rate>
       <visualize>false</visualize>
       <topic>/rgbd_camera</topic>
       <camera>
