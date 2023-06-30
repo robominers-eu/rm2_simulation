@@ -20,7 +20,7 @@
         <!-- INCLUDE SCREW BASE -->
         <link name="${name}_sbLink">
             <inertial>
-                <mass value="0.2" />
+                <mass value="0.002" />
                 <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0"
                     izz="0.00024" />
             </inertial>
@@ -53,7 +53,7 @@
         <!-- INCLUDE CW SCREW -->
         <link name="${name}_cwsLink">
             <inertial>
-                <mass value="0.2" />
+                <mass value="0.002" />
                 <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0" izz="0.00024" />
             </inertial>
             <!-- <collision name='collision_base'>
@@ -85,7 +85,7 @@
 
         <link name="${name}_ccwsLink">
             <inertial>
-                <mass value="0.2" />
+                <mass value="0.002" />
                 <inertia ixx="0.064" ixy="0" ixz="0" iyy="0.064" iyz="0" izz="0.00024" />
             </inertial>
             <!-- <collision name='collision_base'>

@@ -21,7 +21,7 @@
     <!-- INCLUDE MOTORS-->
     <link name="${name}_mLink">
       <inertial>
-        <mass value="0.393" />
+        <mass value="0.003" />
         <inertia ixx="0.00012" ixy="0" ixz="0" iyy="0.00096" iyz="0"
           izz="0.00094" />
       </inertial>
@@ -50,7 +50,7 @@
 
     <link name="${name}_fLink"> 
       <inertial>
-        <mass value="0.044" />
+        <mass value="0.004" />
         <inertia ixx="0.00007" ixy="0" ixz="0" iyy="0.00012" iyz="0"
           izz="0.00009" />
       </inertial>

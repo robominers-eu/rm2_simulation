@@ -33,10 +33,37 @@
 
     <model name="cave">
       <include>
-        <pose>13.2 23.42 -0.3 0 0 0</pose>
+        <pose>13.2 23.42 -0.3 0 0 0.837</pose>
         <uri>model://edgar_cave</uri>
         <name>cave</name>
       </include>
+    </model>
+    <!-- FLOOR -->
+    <model name="cave_floor">
+      <static>true</static>
+      <pose>0 0 0.23 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+        </collision>
+        <!-- <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual> -->
+      </link>
     </model>
 
 

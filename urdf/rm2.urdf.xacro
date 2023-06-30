@@ -17,7 +17,7 @@
   <link name="base_link">
     <pose>0 0 0 0 0 0</pose>
     <inertial>
-      <mass value="1.114" />
+      <mass value="0.114" />
       <inertia ixx="0.00773" ixy="0" ixz="0" iyy="0.00937" iyz="0"
         izz="0.00938" />
     </inertial>
@@ -146,17 +146,17 @@
   <!-- |                                     COUPLING DISK                                |-->
   <!-- =================================================================================== -->
 
-  <!-- <link name="couplingLink">
+  <link name="couplingLink">
     <inertial>
-      <mass value="1.114" />
-      <inertia ixx="0.00773" ixy="0" ixz="0" iyy="0.00937" iyz="0" izz="0.00938" />
+      <mass value="0.000000001" />
+      <inertia ixx="0.000000773" ixy="0" ixz="0" iyy="0.0000000937" iyz="0" izz="0.00000000938" />
     </inertial>
     <collision name='collision_coupling'>
       <geometry>
         <mesh filename="file://$(find rm2_simulation)/urdf/meshes/coupling_head.dae" />
       </geometry>
     </collision>
-    <visual name='visual_'>
+    <visual name='visual_collision'>
       <geometry>
         <mesh filename="file://$(find rm2_simulation)/urdf/meshes/coupling_head.dae" />
       </geometry>
@@ -167,17 +167,17 @@
     <origin xyz="0.10196 0.0 0.0" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="couplingLink" />
-  </joint> -->
+  </joint>
 
 
   <!-- =================================================================================== -->
   <!-- |                                     CUTTING HEAD                                 |-->
   <!-- =================================================================================== -->
 
-  <!-- <link name="cuttingHeadLink">
+  <link name="cuttingHeadLink">
     <inertial>
-      <mass value="0.114" />
-      <inertia ixx="0.00773" ixy="0" ixz="0" iyy="0.00937" iyz="0" izz="0.00938" />
+       <mass value="0.000000001" />
+      <inertia ixx="0.000000773" ixy="0" ixz="0" iyy="0.0000000937" iyz="0" izz="0.00000000938" />
     </inertial>
     <collision name='collision_head'>
       <geometry>
@@ -192,11 +192,10 @@
   </link>
 
   <joint name="j_ch_c" type="fixed">
-    <origin xyz="0.09315
-    + 0.0 0.0" rpy="0 0 0" />
+    <origin xyz="0.09315 0.0 0.0" rpy="0 0 0" />
     <parent link="couplingLink" />
     <child link="cuttingHeadLink" />
-  </joint> -->
+  </joint>
 
 
   <!-- =================================================================================== -->
